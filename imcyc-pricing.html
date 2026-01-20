@@ -1,0 +1,777 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Membresías Universidad IMCYC - Instituto Mexicano del Cemento y del Concreto</title>
+    <meta name="description" content="Membresías exclusivas Universidad IMCYC - Elige la membresía perfecta para tu desarrollo profesional en construcción">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'imcyc-blue': '#0076A3',
+                        'imcyc-blue-dark': '#005578',
+                        'imcyc-blue-light': '#1A87B8',
+                        'imcyc-gray': '#B3B1A8',
+                        'imcyc-gray-light': '#D6D4CE',
+                        'imcyc-gray-dark': '#8F8D86',
+                        'imcyc-white': '#FFFFFF',
+                        'imcyc-black': '#000000',
+                        'imcyc-bg': '#F8F8F8'
+                    },
+                    fontFamily: {
+                        'inter': ['Inter', 'sans-serif']
+                    },
+                    animation: {
+                        'fade-in': 'fadeIn 0.6s ease-out',
+                        'slide-up': 'slideUp 0.5s ease-out',
+                        'bounce-subtle': 'bounce-subtle 2s infinite',
+                        'scale-hover': 'scaleHover 0.2s ease-out'
+                    },
+                    keyframes: {
+                        fadeIn: {
+                            '0%': { opacity: '0' },
+                            '100%': { opacity: '1' }
+                        },
+                        slideUp: {
+                            '0%': { transform: 'translateY(20px)', opacity: '0' },
+                            '100%': { transform: 'translateY(0)', opacity: '1' }
+                        },
+                        'bounce-subtle': {
+                            '0%, 20%, 50%, 80%, 100%': { transform: 'translateY(0)' },
+                            '40%': { transform: 'translateY(-3px)' },
+                            '60%': { transform: 'translateY(-2px)' }
+                        },
+                        scaleHover: {
+                            '0%': { transform: 'scale(1)' },
+                            '100%': { transform: 'scale(1.02)' }
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #F8F8F8;
+        }
+        
+        .card-hover:hover {
+            transform: scale(1.02);
+            transition: all 0.3s ease;
+            box-shadow: 0 20px 40px rgba(0, 118, 163, 0.15);
+        }
+        
+        /* Disable hover effects on touch devices */
+        @media (hover: none) and (pointer: coarse) {
+            .card-hover:hover {
+                transform: none;
+                box-shadow: 0 8px 25px rgba(0, 118, 163, 0.1);
+            }
+        }
+        
+        .btn-primary {
+            background-color: #0076A3;
+            color: #FFFFFF;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-primary:hover {
+            background-color: #005578;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0, 118, 163, 0.3);
+        }
+        
+        .btn-primary:focus {
+            outline: 2px solid #0076A3;
+            outline-offset: 2px;
+        }
+        
+        .featured-plan {
+            border: 3px solid #0076A3;
+            box-shadow: 0 15px 35px rgba(0, 118, 163, 0.2);
+        }
+        
+        .check-icon {
+            color: #0076A3;
+        }
+        
+        .x-icon {
+            color: #B3B1A8;
+        }
+        
+        /* Mobile optimizations */
+        @media (max-width: 768px) {
+            .featured-plan {
+                transform: none !important;
+            }
+            
+            .card-hover {
+                margin-bottom: 1.5rem;
+            }
+            
+            .toggle-buttons {
+                flex-direction: column;
+                width: 100%;
+            }
+            
+            .toggle-buttons button {
+                width: 100%;
+                margin-bottom: 0.5rem;
+            }
+        }
+        
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        
+        ::-webkit-scrollbar-track {
+            background: #F8F8F8;
+        }
+        
+        ::-webkit-scrollbar-thumb {
+            background: #B3B1A8;
+            border-radius: 4px;
+        }
+        
+        ::-webkit-scrollbar-thumb:hover {
+            background: #8F8D86;
+        }
+        
+        /* Accessibility improvements */
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            border: 0;
+        }
+        
+        button:focus {
+            outline: 2px solid #0076A3;
+            outline-offset: 2px;
+        }
+        
+        /* High contrast mode support */
+        @media (prefers-contrast: high) {
+            .btn-primary {
+                border: 2px solid #000000;
+            }
+            
+            .check-icon {
+                color: #000000;
+            }
+        }
+    </style>
+</head>
+<body class="bg-imcyc-bg font-inter">
+    <div class="min-h-screen py-12 px-4">
+        <div class="max-w-7xl mx-auto">
+            <!-- Header -->
+            <div class="text-center mb-16 animate-fade-in">
+                <h1 class="text-4xl md:text-5xl font-bold text-imcyc-black mb-4">
+                    Membresías <span class="text-imcyc-blue">Universidad IMCYC</span>
+                </h1>
+                <p class="text-lg text-imcyc-gray-dark max-w-3xl mx-auto mb-12">
+                    Elige la membresía perfecta para acelerar tu desarrollo profesional en construcción e ingeniería civil. 
+                    Accede a contenido especializado, certificaciones reconocidas y una red exclusiva de profesionales de la industria.
+                </p>
+
+                <!-- Toggle Selector -->
+                <div class="flex justify-center mb-16">
+                    <div class="bg-imcyc-white rounded-full p-2 border-2 border-imcyc-gray shadow-lg">
+                        <div class="flex flex-col sm:flex-row toggle-buttons">
+                            <button
+                                id="personas-btn"
+                                onclick="switchType('personas')"
+                                class="px-8 py-3 rounded-full text-sm font-semibold transition-all duration-300 flex items-center gap-2 btn-primary"
+                                aria-pressed="true"
+                                aria-describedby="personas-desc"
+                            >
+                                <i data-lucide="user" aria-hidden="true"></i>
+                                Personas
+                            </button>
+                            <span id="personas-desc" class="sr-only">Membresías para personas individuales</span>
+                            <button
+                                id="empresas-btn"
+                                onclick="switchType('empresas')"
+                                class="px-8 py-3 rounded-full text-sm font-semibold transition-all duration-300 flex items-center gap-2 text-imcyc-gray-dark hover:text-imcyc-blue"
+                                aria-pressed="false"
+                                aria-describedby="empresas-desc"
+                            >
+                                <i data-lucide="building" aria-hidden="true"></i>
+                                Empresas
+                            </button>
+                            <span id="empresas-desc" class="sr-only">Membresías corporativas para empresas y organizaciones</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Pricing Cards -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 mb-16" id="pricing-cards">
+                <!-- Las tarjetas se generarán dinámicamente con JavaScript -->
+            </div>
+
+            <!-- Enterprise Discounts Section -->
+            <div id="enterprise-discounts" class="bg-gradient-to-br from-blue-50 to-indigo-100 rounded-2xl p-8 mb-16 shadow-lg" style="display: none;">
+                <div class="text-center mb-8">
+                    <h3 class="text-3xl font-bold text-imcyc-black mb-4 flex items-center justify-center gap-3">
+                        <i data-lucide="percent" class="w-8 h-8 text-imcyc-blue"></i>
+                        Descuentos Empresariales Especiales
+                    </h3>
+                    <p class="text-imcyc-gray-dark text-lg max-w-3xl mx-auto">
+                        Aprovecha nuestros descuentos exclusivos para empresas y ahorra más al capacitar a tu equipo
+                    </p>
+                </div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+                    <div class="bg-white rounded-xl p-6 border-2 border-blue-200 hover:border-imcyc-blue transition-all duration-300 group">
+                        <div class="text-center">
+                            <div class="bg-blue-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:bg-imcyc-blue group-hover:text-white transition-all duration-300">
+                                <i data-lucide="users" class="w-8 h-8 text-imcyc-blue group-hover:text-white"></i>
+                            </div>
+                            <h4 class="font-bold text-xl text-imcyc-black mb-2">10+ Empleados</h4>
+                            <p class="text-3xl font-bold text-imcyc-blue mb-2">17% OFF</p>
+                            <p class="text-imcyc-gray-dark text-sm">En todos los planes empresariales</p>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-white rounded-xl p-6 border-2 border-orange-200 hover:border-orange-500 transition-all duration-300 group">
+                        <div class="text-center">
+                            <div class="bg-orange-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:bg-orange-500 group-hover:text-white transition-all duration-300">
+                                <i data-lucide="building-2" class="w-8 h-8 text-orange-500 group-hover:text-white"></i>
+                            </div>
+                            <h4 class="font-bold text-xl text-imcyc-black mb-2">50+ Empleados</h4>
+                            <p class="text-3xl font-bold text-orange-500 mb-2">20% OFF</p>
+                            <p class="text-imcyc-gray-dark text-sm">Descuento adicional en Enterprise</p>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-white rounded-xl p-6 border-2 border-purple-200 hover:border-purple-500 transition-all duration-300 group">
+                        <div class="text-center">
+                            <div class="bg-purple-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:bg-purple-500 group-hover:text-white transition-all duration-300">
+                                <i data-lucide="calendar" class="w-8 h-8 text-purple-500 group-hover:text-white"></i>
+                            </div>
+                            <h4 class="font-bold text-xl text-imcyc-black mb-2">Pago Anual</h4>
+                            <p class="text-3xl font-bold text-purple-500 mb-2">Hasta 6 meses</p>
+                            <p class="text-imcyc-gray-dark text-sm">Gratis al pagar por adelantado</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="bg-white rounded-xl p-6 border-l-4 border-imcyc-blue">
+                    <div class="flex items-start gap-4">
+                        <div class="bg-blue-100 p-3 rounded-full">
+                            <i data-lucide="info" class="w-6 h-6 text-imcyc-blue"></i>
+                        </div>
+                        <div class="flex-1">
+                            <h4 class="font-bold text-imcyc-black mb-2">Descuentos Adicionales Disponibles</h4>
+                            <ul class="space-y-2 text-imcyc-gray-dark text-sm">
+                                <li class="flex items-center gap-2">
+                                    <i data-lucide="check" class="w-4 h-4 text-green-500"></i>
+                                    <span><strong>Descuento por volumen:</strong> 25% OFF para empresas con 100+ empleados</span>
+                                </li>
+                                <li class="flex items-center gap-2">
+                                    <i data-lucide="check" class="w-4 h-4 text-green-500"></i>
+                                    <span><strong>Descuento por lealtad:</strong> 10% adicional para clientes que renuevan</span>
+                                </li>
+                                <li class="flex items-center gap-2">
+                                    <i data-lucide="check" class="w-4 h-4 text-green-500"></i>
+                                    <span><strong>Descuento por referidos:</strong> 15% OFF por cada empresa que refiera</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="text-center mt-8">
+                    <p class="text-imcyc-gray-dark mb-4">¿Quieres conocer más sobre nuestros descuentos personalizados?</p>
+                    <button class="bg-imcyc-blue text-white px-8 py-3 rounded-xl font-semibold hover:bg-imcyc-blue-dark transition-all duration-300 flex items-center gap-2 mx-auto">
+                        Solicitar Cotización Personalizada
+                        <i data-lucide="external-link" class="w-4 h-4"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Additional Information -->
+            <div class="bg-imcyc-white rounded-2xl border border-imcyc-gray p-8 mb-16 animate-fade-in shadow-lg">
+                <div class="text-center mb-8">
+                    <h3 class="text-2xl font-bold text-imcyc-black mb-2">
+                        Beneficios Adicionales
+                    </h3>
+                    <p class="text-imcyc-gray-dark">
+                        Todas nuestras membri­as incluyen estos beneficios exclusivos del IMCYC
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                    <div class="flex flex-col items-center text-center p-6 rounded-xl bg-imcyc-bg border border-imcyc-gray hover:border-imcyc-blue transition-all duration-300 group">
+                        <div class="text-imcyc-blue mb-4 group-hover:scale-110 transition-transform duration-300">
+                            <i data-lucide="award" class="w-8 h-8"></i>
+                        </div>
+                        <h4 class="font-semibold text-imcyc-black mb-2">Certificaciones Oficiales</h4>
+                        <p class="text-imcyc-gray-dark text-sm">Certificados reconocidos por la industria</p>
+                    </div>
+                    <div class="flex flex-col items-center text-center p-6 rounded-xl bg-imcyc-bg border border-imcyc-gray hover:border-imcyc-blue transition-all duration-300 group">
+                        <div class="text-imcyc-blue mb-4 group-hover:scale-110 transition-transform duration-300">
+                            <i data-lucide="users" class="w-8 h-8"></i>
+                        </div>
+                        <h4 class="font-semibold text-imcyc-black mb-2">Red de Profesionales</h4>
+                        <p class="text-imcyc-gray-dark text-sm">Conecta con expertos de la industria</p>
+                    </div>
+                    <div class="flex flex-col items-center text-center p-6 rounded-xl bg-imcyc-bg border border-imcyc-gray hover:border-imcyc-blue transition-all duration-300 group">
+                        <div class="text-imcyc-blue mb-4 group-hover:scale-110 transition-transform duration-300">
+                            <i data-lucide="book-open" class="w-8 h-8"></i>
+                        </div>
+                        <h4 class="font-semibold text-imcyc-black mb-2">Biblioteca Técnica</h4>
+                        <p class="text-imcyc-gray-dark text-sm">Acceso a publicaciones especializadas</p>
+                    </div>
+                    <div class="flex flex-col items-center text-center p-6 rounded-xl bg-imcyc-bg border border-imcyc-gray hover:border-imcyc-blue transition-all duration-300 group">
+                        <div class="text-imcyc-blue mb-4 group-hover:scale-110 transition-transform duration-300">
+                            <i data-lucide="calendar" class="w-8 h-8"></i>
+                        </div>
+                        <h4 class="font-semibold text-imcyc-black mb-2">Eventos Exclusivos</h4>
+                        <p class="text-imcyc-gray-dark text-sm">Seminarios y conferencias especializadas</p>
+                    </div>
+                </div>
+
+                <div class="mt-8 pt-6 border-t border-imcyc-gray">
+                    <div class="flex flex-col md:flex-row justify-center items-center gap-6 text-imcyc-gray-dark text-sm">
+                        <div class="flex items-center gap-2">
+                            <i data-lucide="shield" class="w-4 h-4 text-imcyc-blue"></i>
+                            <span>Soporte técnico especializado</span>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <i data-lucide="refresh-cw" class="w-4 h-4 text-imcyc-blue"></i>
+                            <span>Actualización continua de contenidos</span>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <i data-lucide="check-circle" class="w-4 h-4 text-imcyc-blue"></i>
+                            <span>Garantía de satisfacción</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Contact Section for Enterprises -->
+            <div id="enterprise-contact" class="bg-gradient-to-r from-imcyc-blue to-imcyc-blue-light rounded-2xl p-8 text-center text-imcyc-white shadow-lg" style="display: none;">
+                <div class="mb-6">
+                    <h3 class="text-2xl font-bold mb-2">
+                        ¿Necesitas una solución empresarial personalizada?
+                    </h3>
+                    <p class="text-imcyc-white opacity-90">
+                        Contacta con nuestro equipo de ventas empresariales para membri­as corporativas personalizadas
+                    </p>
+                </div>
+                <button class="bg-imcyc-white text-imcyc-blue px-8 py-3 rounded-xl font-semibold hover:bg-imcyc-gray transition-all duration-300 flex items-center gap-2 mx-auto">
+                    Contactar Ventas
+                    <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Estado global
+        let currentType = 'personas';
+        
+        // Función para formatear precios con comas
+        function formatPrice(price) {
+            return price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+        }
+
+        // Datos de los planes
+        const plansData = {
+            personas: {
+                basic: {
+                    name: 'Básico',
+                    monthlyPrice: 299,
+                    yearlyPrice: 2990,
+                    savings: '2 meses gratis',
+                    features: [
+                        { text: 'Acceso a cursos básicos de construcción', included: true },
+                        { text: 'Certificado de participación', included: true },
+                        { text: 'Foro de la comunidad', included: true },
+                        { text: 'Acceso móvil y web', included: true },
+                        { text: 'Webinars especializados', included: false },
+                        { text: 'Biblioteca técnica completa', included: false },
+                        { text: 'Asesoría personalizada', included: false },
+                        { text: 'Networking profesional', included: false }
+                    ]
+                },
+                expert: {
+                    name: 'Profesional',
+                    monthlyPrice: 599,
+                    yearlyPrice: 5990,
+                    savings: '3 meses gratis',
+                    popular: true,
+                    features: [
+                        { text: 'Todo lo del plan Básico', included: true },
+                        { text: 'Cursos avanzados y especializaciones', included: true },
+                        { text: 'Webinars especializados en vivo', included: true },
+                        { text: 'Biblioteca técnica completa', included: true },
+                        { text: 'Certificados profesionales verificados', included: true },
+                        { text: 'Acceso prioritario a nuevos contenidos', included: true },
+                        { text: 'Asesoría personalizada', included: false },
+                        { text: 'Eventos exclusivos presenciales', included: false }
+                    ]
+                },
+                premium: {
+                    name: 'Premium',
+                    monthlyPrice: 999,
+                    yearlyPrice: 9990,
+                    savings: '4 meses gratis',
+                    features: [
+                        { text: 'Todo lo del plan Profesional', included: true },
+                        { text: 'Asesoría personalizada con expertos', included: true },
+                        { text: 'Networking exclusivo con profesionales', included: true },
+                        { text: 'Eventos presenciales exclusivos', included: true },
+                        { text: 'Mentorías individualizadas', included: true },
+                        { text: 'Acceso anticipado a nuevos cursos', included: true },
+                        { text: 'Certificaciones internacionales', included: true },
+                        { text: 'Soporte técnico prioritario 24/7', included: true }
+                    ]
+                },
+                info: {
+                    name: 'Información Importante',
+                    isInfoCard: true,
+                    title: 'Lo que NO incluyen las membresías',
+                    features: [
+                        { text: 'Ensayos de aptitud profesional', included: false, info: true },
+                        { text: 'Certificaciones oficiales de competencia', included: false, info: true },
+                        { text: 'Exámenes de certificación técnica', included: false, info: true },
+                        { text: 'Validación de competencias laborales', included: false, info: true }
+                    ],
+                    note: 'Las membresías se enfocan en capacitación y desarrollo profesional. Para obtener certificaciones oficiales y ensayos de aptitud, consulta nuestros servicios especializados.'
+                }
+            },
+            empresas: {
+                basic: {
+                    name: 'Empresarial Básico',
+                    monthlyPrice: 1499,
+                    yearlyPrice: 14990,
+                    originalMonthlyPrice: 1799,
+                    originalYearlyPrice: 17990,
+                    discount: 17,
+                    savings: '3 meses gratis',
+                    features: [
+                        { text: 'Hasta 10 empleados incluidos', included: true },
+                        { text: 'Dashboard de administración', included: true },
+                        { text: 'Reportes básicos de progreso', included: true },
+                        { text: 'Soporte por email', included: true },
+                        { text: 'Capacitaciones grupales', included: false },
+                        { text: 'API de integración con sistemas', included: false },
+                        { text: 'Consultoria especializada', included: false },
+                        { text: 'Contenido personalizado', included: false }
+                    ]
+                },
+                expert: {
+                    name: 'Empresarial Avanzado',
+                    monthlyPrice: 2999,
+                    yearlyPrice: 29990,
+                    originalMonthlyPrice: 3599,
+                    originalYearlyPrice: 35990,
+                    discount: 17,
+                    savings: '4 meses gratis',
+                    popular: true,
+                    features: [
+                        { text: 'Hasta 50 empleados incluidos', included: true },
+                        { text: 'Todo lo del plan Empresarial Básico', included: true },
+                        { text: 'Capacitaciones grupales en sitio', included: true },
+                        { text: 'Reportes avanzados y analytics', included: true },
+                        { text: 'API de integración con sistemas', included: true },
+                        { text: 'Soporte telefónico dedicado', included: true },
+                        { text: 'Consultoria especializada', included: false },
+                        { text: 'Contenido personalizado', included: false }
+                    ]
+                },
+                premium: {
+                    name: 'Enterprise',
+                    monthlyPrice: 5999,
+                    yearlyPrice: 59990,
+                    originalMonthlyPrice: 7499,
+                    originalYearlyPrice: 74990,
+                    discount: 20,
+                    savings: '6 meses gratis',
+                    features: [
+                        { text: 'Empleados ilimitados', included: true },
+                        { text: 'Todo lo del plan Empresarial Avanzado', included: true },
+                        { text: 'Consultoria especializada continua', included: true },
+                        { text: 'Contenido personalizado para la empresa', included: true },
+                        { text: 'Onboarding personalizado', included: true },
+                        { text: 'Integraciones personalizadas', included: true },
+                        { text: 'SLA garantizado 99.9%', included: true },
+                        { text: 'Account Manager dedicado', included: true }
+                    ]
+                }
+            }
+        };
+
+        // Funciones
+        function switchType(type) {
+            currentType = type;
+            
+            // Actualizar botones
+            const personasBtn = document.getElementById('personas-btn');
+            const empresasBtn = document.getElementById('empresas-btn');
+            const enterpriseContact = document.getElementById('enterprise-contact');
+            const enterpriseDiscounts = document.getElementById('enterprise-discounts');
+            
+            if (type === 'personas') {
+                personasBtn.className = 'px-8 py-3 rounded-full text-sm font-semibold transition-all duration-300 flex items-center gap-2 btn-primary';
+                personasBtn.setAttribute('aria-pressed', 'true');
+                empresasBtn.className = 'px-8 py-3 rounded-full text-sm font-semibold transition-all duration-300 flex items-center gap-2 text-imcyc-gray-dark hover:text-imcyc-blue';
+                empresasBtn.setAttribute('aria-pressed', 'false');
+                enterpriseContact.style.display = 'none';
+                enterpriseDiscounts.style.display = 'none';
+            } else {
+                personasBtn.className = 'px-8 py-3 rounded-full text-sm font-semibold transition-all duration-300 flex items-center gap-2 text-imcyc-gray-dark hover:text-imcyc-blue';
+                personasBtn.setAttribute('aria-pressed', 'false');
+                empresasBtn.className = 'px-8 py-3 rounded-full text-sm font-semibold transition-all duration-300 flex items-center gap-2 btn-primary';
+                empresasBtn.setAttribute('aria-pressed', 'true');
+                enterpriseContact.style.display = 'block';
+                enterpriseDiscounts.style.display = 'block';
+            }
+            
+            renderCards();
+        }
+
+        function toggleBilling(cardId, cycle) {
+            const card = document.getElementById(cardId);
+            const monthlyBtn = card.querySelector('.billing-monthly');
+            const yearlyBtn = card.querySelector('.billing-yearly');
+            
+            if (cycle === 'monthly') {
+                monthlyBtn.className = 'px-4 py-2 rounded-full text-sm font-medium transition-all bg-imcyc-blue text-imcyc-white';
+                yearlyBtn.className = 'px-4 py-2 rounded-full text-sm font-medium transition-all bg-imcyc-gray text-imcyc-black hover:bg-imcyc-gray-dark';
+            } else {
+                monthlyBtn.className = 'px-4 py-2 rounded-full text-sm font-medium transition-all bg-imcyc-gray text-imcyc-black hover:bg-imcyc-gray-dark';
+                yearlyBtn.className = 'px-4 py-2 rounded-full text-sm font-medium transition-all bg-imcyc-blue text-imcyc-white';
+            }
+            
+            updatePricing(cardId, cycle);
+        }
+
+        function updatePricing(cardId, cycle) {
+            const card = document.getElementById(cardId);
+            const planKey = cardId.replace('card-', '');
+            const plan = plansData[currentType][planKey];
+            
+            const price = cycle === 'monthly' ? plan.monthlyPrice : plan.yearlyPrice;
+            const originalPrice = cycle === 'monthly' ? plan.originalMonthlyPrice : plan.originalYearlyPrice;
+            
+            const priceElement = card.querySelector('.price-amount');
+            const cycleElement = card.querySelector('.price-cycle');
+            const monthlyEquivalent = card.querySelector('.monthly-equivalent');
+            const savingsElement = card.querySelector('.savings-text');
+            const originalPriceElement = card.querySelector('.original-price');
+            
+            priceElement.textContent = `$${formatPrice(price)}`;
+            cycleElement.textContent = `/${cycle === 'monthly' ? 'mes' : 'año'}`;
+            
+            // Mostrar precio original tachado para empresas
+            if (currentType === 'empresas' && originalPrice && originalPriceElement) {
+                originalPriceElement.textContent = `$${formatPrice(originalPrice)}`;
+                originalPriceElement.style.display = 'inline-block';
+            } else if (originalPriceElement) {
+                originalPriceElement.style.display = 'none';
+            }
+            
+            if (cycle === 'yearly') {
+                const monthlyEq = Math.round(price / 12);
+                monthlyEquivalent.textContent = `$${formatPrice(monthlyEq)}/mes pagando anual`;
+                monthlyEquivalent.style.display = 'block';
+                savingsElement.textContent = `🎉 ${plan.savings} al pagar anual`;
+                savingsElement.style.display = 'block';
+            } else {
+                monthlyEquivalent.style.display = 'none';
+                savingsElement.style.display = 'none';
+            }
+        }
+
+        function renderCards() {
+            const container = document.getElementById('pricing-cards');
+            const plans = plansData[currentType];
+            
+            container.innerHTML = '';
+            
+            Object.entries(plans).forEach(([key, plan], index) => {
+                const card = createCard(key, plan, index);
+                container.appendChild(card);
+            });
+            
+            // Re-inicializar Lucide icons
+            lucide.createIcons();
+        }
+
+        function createCard(planKey, plan, index) {
+            const isPopular = plan.popular;
+            const isInfoCard = plan.isInfoCard;
+            const delay = (index + 1) * 150;
+            
+            const card = document.createElement('div');
+            card.id = `card-${planKey}`;
+            
+            if (isInfoCard) {
+                card.className = `relative bg-gradient-to-br from-amber-50 to-orange-100 rounded-2xl border-2 border-amber-300 p-8 transition-all duration-300 animate-slide-up`;
+                card.style.animationDelay = `${delay}ms`;
+                
+                card.innerHTML = `
+                    <div class="text-center mb-6">
+                        <div class="bg-amber-200 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <i data-lucide="alert-circle" class="w-8 h-8 text-amber-600"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-amber-900 mb-2">${plan.name}</h3>
+                        <p class="text-amber-800 font-semibold">${plan.title}</p>
+                    </div>
+                    
+                    <div class="mb-6">
+                        <ul class="space-y-3">
+                            ${plan.features.map(feature => `
+                                <li class="flex items-start gap-3">
+                                    <div class="text-amber-600 mt-0.5">
+                                        <i data-lucide="x" class="w-5 h-5 stroke-2"></i>
+                                    </div>
+                                    <span class="text-sm text-amber-800 font-medium">
+                                        ${feature.text}
+                                    </span>
+                                </li>
+                            `).join('')}
+                        </ul>
+                    </div>
+                    
+                    <div class="bg-amber-200 rounded-xl p-4 border border-amber-300">
+                        <p class="text-xs text-amber-900 leading-relaxed">
+                            ${plan.note}
+                        </p>
+                    </div>
+                    
+                    <div class="mt-6">
+                        <button class="w-full py-3 px-4 rounded-xl font-semibold bg-amber-300 text-amber-900 hover:bg-amber-400 transition-all duration-300 flex items-center justify-center gap-2 text-sm">
+                            Consultar Servicios Adicionales
+                            <i data-lucide="external-link" class="w-4 h-4"></i>
+                        </button>
+                    </div>
+                `;
+                
+                return card;
+            }
+            
+            card.className = `relative bg-imcyc-white rounded-2xl border-2 border-imcyc-gray p-8 transition-all duration-300 card-hover animate-slide-up ${isPopular ? 'featured-plan scale-105' : ''}`;
+            card.style.animationDelay = `${delay}ms`;
+            
+            let price = plan.yearlyPrice;
+            let originalPrice = plan.originalYearlyPrice;
+            let monthlyEq = Math.round(plan.yearlyPrice / 12);
+            let discount = plan.discount || 0;
+            
+            card.innerHTML = `
+                ${isPopular ? `
+                    <div class="absolute -top-4 left-1/2 transform -translate-x-1/2">
+                        <div class="bg-imcyc-blue px-6 py-2 rounded-full text-imcyc-white text-sm font-bold flex items-center gap-2 animate-bounce-subtle" role="banner" aria-label="Plan más popular">
+                            <i data-lucide="star" class="w-4 h-4 fill-current" aria-hidden="true"></i>
+                            Más Popular
+                        </div>
+                    </div>
+                ` : ''}
+                
+                <div class="absolute -top-3 -right-3 savings-badge" style="display: block;" aria-label="Descuento disponible">
+                    <div class="${currentType === 'empresas' && discount > 0 ? 'bg-gradient-to-r from-red-500 to-orange-500' : 'bg-orange-500'} px-3 py-2 rounded-full text-white text-xs font-semibold transform rotate-12 shadow-lg">
+                        ${currentType === 'empresas' && discount > 0 ? `${discount}% OFF` : plan.savings}
+                    </div>
+                </div>
+                
+                <div class="mb-6">
+                    <h3 class="text-2xl font-bold text-imcyc-black mb-4 flex items-center gap-2">
+                        ${plan.name}
+                        ${isPopular ? '<i data-lucide="sparkles" class="w-5 h-5 text-imcyc-blue" aria-hidden="true"></i>' : ''}
+                    </h3>
+                    
+                    <div class="flex items-center gap-2 mb-4" role="group" aria-label="Seleccionar período de facturación">
+                        <button onclick="toggleBilling('card-${planKey}', 'monthly')" class="billing-monthly px-4 py-2 rounded-full text-sm font-medium transition-all bg-imcyc-gray text-imcyc-black hover:bg-imcyc-gray-dark" aria-pressed="false">
+                            Mensual
+                        </button>
+                        <button onclick="toggleBilling('card-${planKey}', 'yearly')" class="billing-yearly px-4 py-2 rounded-full text-sm font-medium transition-all bg-imcyc-blue text-imcyc-white" aria-pressed="true">
+                            Anual
+                        </button>
+                    </div>
+                </div>
+
+                <div class="mb-8">
+                    ${currentType === 'empresas' && originalPrice ? `
+                        <div class="flex items-baseline gap-3 mb-2">
+                            <span class="text-lg text-imcyc-gray-dark line-through original-price">$${formatPrice(originalPrice)}</span>
+                            <span class="bg-red-100 text-red-600 text-xs px-2 py-1 rounded-full font-semibold">${discount}% DESC</span>
+                        </div>
+                    ` : ''}
+                    <div class="flex items-baseline gap-2">
+                        <span class="text-4xl font-bold text-imcyc-black price-amount">$${formatPrice(price)}</span>
+                        <span class="text-imcyc-gray-dark price-cycle">/año</span>
+                    </div>
+                    
+                    <p class="text-imcyc-gray-dark text-sm mt-2 monthly-equivalent">
+                        $${formatPrice(monthlyEq)}/mes pagando anual
+                    </p>
+                    
+                    <p class="text-imcyc-blue text-sm font-semibold mt-2 savings-text">
+                        🎉 ${plan.savings} al pagar anual
+                    </p>
+                </div>
+
+                <div class="mb-8">
+                    <h4 class="text-imcyc-black font-semibold mb-4 text-lg">Lo que incluye:</h4>
+                    <ul class="space-y-3">
+                        ${plan.features.map(feature => `
+                            <li class="flex items-start gap-3">
+                                <div class="${feature.included ? 'check-icon' : 'x-icon'} mt-0.5">
+                                    <i data-lucide="${feature.included ? 'check' : 'x'}" class="w-5 h-5 ${feature.included ? 'stroke-2' : 'stroke-1'}"></i>
+                                </div>
+                                <span class="text-sm ${feature.included ? 'text-imcyc-black' : 'text-imcyc-gray-dark line-through'}">
+                                    ${feature.text}
+                                </span>
+                            </li>
+                        `).join('')}
+                    </ul>
+                </div>
+
+                <div class="space-y-4">
+                    <button class="w-full py-4 px-6 rounded-xl font-semibold transition-all duration-300 flex items-center justify-center gap-2 ${isPopular ? 'btn-primary' : 'bg-imcyc-white border-2 border-imcyc-blue text-imcyc-blue hover:bg-imcyc-blue hover:text-imcyc-white'}">
+                        ${currentType === 'empresas' && plan.name.includes('Enterprise') ? 'Contactar Ventas' : 'Suscribirse Ahora'}
+                        <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                    </button>
+                    
+                    <p class="text-imcyc-gray-dark text-xs text-center">
+                        O desde $${formatPrice(Math.round(monthlyEq / 3))} en 3 pagos sin interés
+                    </p>
+                </div>
+
+                ${plan.name.includes('Enterprise') ? `
+                    <div class="mt-6 pt-4 border-t border-imcyc-gray">
+                        <p class="text-imcyc-gray-dark text-xs text-center">
+                            Incluye onboarding personalizado y account manager dedicado
+                        </p>
+                    </div>
+                ` : ''}
+            `;
+            
+            return card;
+        }
+
+        // Inicialización
+        document.addEventListener('DOMContentLoaded', function() {
+            renderCards();
+            lucide.createIcons();
+        });
+    </script>
+</body>
+</html>
