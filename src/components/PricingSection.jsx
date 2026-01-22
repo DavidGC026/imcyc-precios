@@ -167,6 +167,11 @@ const PricingSection = () => {
           { text: 'Descuento en sellos de calidad 10%', included: true },
           { text: 'Incluye los beneficios del Plan Profesional', included: true }
         ]
+      },
+      ia: {
+        name: 'IA',
+        isIACard: true,
+        features: []
       }
     }
   };
@@ -255,10 +260,7 @@ const PricingSection = () => {
         </div>
 
         {/* Pricing Cards */}
-        <div className={`gap-8 mb-16 ${selectedType === 'asociaciones'
-          ? 'flex justify-center'
-          : 'grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4'
-          }`}>
+        <div className="gap-8 mb-16 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
           {Object.values(currentPlans).map((plan, index) => (
             <PricingCard
               key={plan?.name || index}
@@ -267,8 +269,7 @@ const PricingSection = () => {
               duoStudents={duoStudents}
               setDuoStudents={setDuoStudents}
               formatPrice={formatPrice}
-              className={`animate-slide-up ${selectedType === 'asociaciones' ? 'w-full max-w-5xl' : ''
-                }`}
+              className="animate-slide-up"
               style={{ animationDelay: `${0.1 * (index + 1)}s` }}
             />
           ))}

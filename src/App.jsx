@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import PricingSection from './components/PricingSection';
-import CheckoutPage from './components/CheckoutPage';
 import SuccessPage from './components/SuccessPage';
 import CancelPage from './components/CancelPage';
 import './index.css';
@@ -24,9 +23,6 @@ function App() {
 
     if (normalizedPath === '/success') {
       return <SuccessPage />;
-    }
-    if (normalizedPath === '/checkout') {
-      return <CheckoutPage />;
     }
     if (normalizedPath === '/cancel') {
       return <CancelPage />;
