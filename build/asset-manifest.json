@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/precios/static/css/main.95bef94c.css",
+    "main.js": "/precios/static/js/main.ca6e497d.js",
+    "index.html": "/precios/index.html",
+    "main.95bef94c.css.map": "/precios/static/css/main.95bef94c.css.map",
+    "main.ca6e497d.js.map": "/precios/static/js/main.ca6e497d.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.95bef94c.css",
+    "static/js/main.ca6e497d.js"
+  ]
+}
