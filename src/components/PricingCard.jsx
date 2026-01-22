@@ -19,25 +19,28 @@ const PricingCard = ({
   if (isInfoCard) {
     return (
       <div
-        className={`relative bg-gradient-to-br from-amber-50 to-orange-100 rounded-2xl border-2 border-amber-300 p-8 transition-all duration-300 ${className}`}
+        className={`relative bg-[#172554] rounded-[30px] p-8 transition-all duration-300 ${className}`}
         style={style}
       >
-        <div className="text-center mb-6">
-          <div className="bg-amber-200 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
-            <AlertCircle className="w-8 h-8 text-amber-600" />
+        <div className="flex items-center gap-3 mb-4">
+          <div className="bg-white/10 p-2 rounded-full">
+            <AlertCircle className="w-6 h-6 text-white" />
           </div>
-          <h3 className="text-xl font-bold text-amber-900 mb-2">{plan.name}</h3>
-          <p className="text-amber-800 font-semibold">{plan.title}</p>
+          <h3 className="text-2xl font-bold text-white">Información Importante</h3>
         </div>
 
-        <div className="mb-6">
+        <p className="text-blue-100 font-semibold mb-6">
+          Lo que NO incluyen nuestros planes:
+        </p>
+
+        <div className="mb-8">
           <ul className="space-y-3">
             {plan.features.map((feature, index) => (
               <li key={index} className="flex items-start gap-3">
-                <div className="text-amber-600 mt-0.5">
+                <div className="text-white/60 mt-0.5">
                   <X className="w-5 h-5" strokeWidth={2} />
                 </div>
-                <span className="text-sm text-amber-800 font-medium">
+                <span className="text-sm text-blue-50 font-medium">
                   {feature.text}
                 </span>
               </li>
@@ -45,20 +48,10 @@ const PricingCard = ({
           </ul>
         </div>
 
-        <div className="bg-amber-200 rounded-xl p-4 border border-amber-300 mb-6">
-          <p className="text-xs text-amber-900 leading-relaxed">
+        <div className="bg-white/10 rounded-xl p-4 border border-white/5">
+          <p className="text-xs text-blue-50 leading-relaxed font-medium">
             {plan.note}
           </p>
-        </div>
-
-        <div>
-          <button
-            onClick={() => window.open('https://www.imcyc.com.mx', '_blank')}
-            className="w-full py-3 px-4 rounded-xl font-semibold bg-amber-300 text-amber-900 hover:bg-amber-400 transition-all duration-300 flex items-center justify-center gap-2 text-sm"
-          >
-            Consultar Servicios Adicionales
-            <ExternalLink className="w-4 h-4" />
-          </button>
         </div>
       </div>
     );
@@ -186,6 +179,7 @@ const PricingCard = ({
       {/* Plan Name */}
       <div className="mb-6">
         <h3 className="text-2xl font-bold text-white mb-2 flex items-center gap-2">
+          {plan.icon && <plan.icon size={26} className="text-white" />}
           {plan.name}
           {isPopular && <Sparkles size={20} className="text-blue-400" />}
         </h3>
@@ -329,7 +323,7 @@ const PricingCard = ({
           className="w-full py-3 px-6 rounded-lg font-bold bg-blue-600 text-white hover:bg-blue-700 hover:shadow-lg hover:shadow-blue-500/25 transition-all duration-300 flex items-center justify-center gap-2 uppercase text-sm tracking-wide"
           aria-label={`Suscribirse al plan ${plan.name}`}
         >
-          {getButtonText() === 'Comenzar ahora' || getButtonText() === 'Pagar Ahora' ? 'MÁS INFORMACIÓN' : getButtonText()}
+          {plan.paymentLink ? 'SUSCRIBIRME AHORA' : 'MÁS INFORMACIÓN'}
           <ExternalLink size={16} />
         </button>
 

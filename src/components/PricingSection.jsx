@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { User, Building, Users, AlertCircle } from 'lucide-react';
+import { User, Building, Users, AlertCircle, UserPlus, Brain, Droplets, Layers, Building2, Factory, Landmark } from 'lucide-react';
 import PricingCard from './PricingCard';
 
 const PricingSection = () => {
@@ -13,11 +13,27 @@ const PricingSection = () => {
   };
 
 
+  // Datos para la tarjeta global de información
+  const infoPlanData = {
+    name: 'Información Importante',
+    isInfoCard: true,
+    title: 'Lo que NO incluyen los planes',
+    monthlyPrice: null,
+    yearlyPrice: null,
+    features: [
+      { text: 'Constancias de aptitud profesional', included: false, info: true },
+      { text: 'Certificaciones oficiales de competencia', included: false, info: true },
+      { text: 'Exámenes de certificación técnica', included: false, info: true }
+    ],
+    note: 'Los planes se enfocan en capacitación y desarrollo profesional. Para obtener certificaciones oficiales y ensayos de aptitud, consulta nuestros servicios especializados.'
+  };
+
   // Datos de los planes
   const plansData = {
     individual: {
       basic: {
         name: 'Profesional',
+        icon: User,
         paymentLink: 'https://pay.conekta.com/link/b867b825d19a4522a75b88cae3f3f7ec',
         monthlyPrice: 99,
         yearlyPrice: 1089,
@@ -31,6 +47,7 @@ const PricingSection = () => {
       },
       expert: {
         name: 'Profesional Plus',
+        icon: UserPlus,
         paymentLink: 'https://pay.conekta.com/link/21e4d57e92ee450b909523127b672ed9',
         monthlyPrice: 299,
         yearlyPrice: 3289,
@@ -46,26 +63,15 @@ const PricingSection = () => {
       },
       ia: {
         name: 'IA',
+        icon: Brain,
         isIACard: true,
         features: []
-      },
-      info: {
-        name: 'Información Importante',
-        isInfoCard: true,
-        title: 'Lo que NO incluyen los planes',
-        monthlyPrice: null,
-        yearlyPrice: null,
-        features: [
-          { text: 'Constancias de aptitud profesional', included: false, info: true },
-          { text: 'Certificaciones oficiales de competencia', included: false, info: true },
-          { text: 'Exámenes de certificación técnica', included: false, info: true }
-        ],
-        note: 'Los planes se enfocan en capacitación y desarrollo profesional. Para obtener certificaciones oficiales y ensayos de aptitud, consulta nuestros servicios especializados.'
       }
     },
     membresias: {
       agua: {
         name: 'Agua',
+        icon: Droplets,
         monthlyPrice: null,
         yearlyPrice: 15000,
         discount: 0,
@@ -86,6 +92,7 @@ const PricingSection = () => {
       },
       agregados: {
         name: 'Agregados',
+        icon: Layers,
         monthlyPrice: null,
         yearlyPrice: 25000,
         discount: 0,
@@ -106,6 +113,7 @@ const PricingSection = () => {
       },
       concreto: {
         name: 'Concreto',
+        icon: Building2,
         monthlyPrice: null,
         yearlyPrice: 35000,
         discount: 0,
@@ -125,10 +133,12 @@ const PricingSection = () => {
       },
       cemento: {
         name: 'Cemento',
+        icon: Factory,
         monthlyPrice: null,
         yearlyPrice: 45000,
         discount: 0,
         savings: '—',
+        isWide: true,
         features: [
           { text: 'Más de 500 empleados', included: true },
           { text: 'Logotipo en página web', included: true },
@@ -144,6 +154,7 @@ const PricingSection = () => {
       },
       ia: {
         name: 'IA',
+        icon: Brain,
         isIACard: true,
         features: []
       }
@@ -152,10 +163,12 @@ const PricingSection = () => {
     asociaciones: {
       asociaciones: {
         name: 'Asociaciones',
+        icon: Landmark,
         monthlyPrice: null,
         yearlyPrice: 45000,
         discount: 0,
         savings: '—',
+        isWide: true,
         features: [
           { text: 'Más de 500 empleados', included: true },
           { text: 'Logotipo en página web', included: true },
@@ -170,6 +183,7 @@ const PricingSection = () => {
       },
       ia: {
         name: 'IA',
+        icon: Brain,
         isIACard: true,
         features: []
       }
@@ -183,13 +197,13 @@ const PricingSection = () => {
   return (
     <div className="min-h-screen bg-slate-950 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-slate-900 via-slate-950 to-black py-16 px-4">
       <div className="max-w-[1400px] mx-auto">
-        {/* Top-left logo */}
-        <div className="mb-8">
+        {/* Top-left logo - Centered and Larger */}
+        <div className="mb-8 flex justify-center">
           <a href="/precios/" className="inline-flex items-center" aria-label="IMCYC Home">
             <img
               src="https://grabador.imcyc.com/TiendaImcyc/Imagenes/logo_imcyc.svg"
               alt="Logo IMCYC"
-              className="h-16 w-auto"
+              className="h-24 w-auto"
               loading="eager"
             />
           </a>
@@ -256,23 +270,6 @@ const PricingSection = () => {
           </div>
         </div>
 
-        {/* Pricing Cards */}
-        <div className="gap-8 mb-16 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-          {Object.values(currentPlans).map((plan, index) => (
-            <PricingCard
-              key={plan?.name || index}
-              plan={plan}
-              type={selectedType}
-              duoStudents={duoStudents}
-              setDuoStudents={setDuoStudents}
-              formatPrice={formatPrice}
-              className="animate-slide-up"
-              style={{ animationDelay: `${0.1 * (index + 1)}s` }}
-            />
-          ))}
-        </div>
-
-
         {/* Alert - Membresías (Blue Info Bar) */}
         <div className="bg-blue-600 rounded-full py-3 px-6 text-center shadow-lg shadow-blue-900/20 mb-12 max-w-4xl mx-auto">
           <p className="text-white text-sm font-medium flex items-center justify-center gap-2">
@@ -281,44 +278,40 @@ const PricingSection = () => {
           </p>
         </div>
 
+        {/* Pricing Cards */}
+        <div className="flex flex-wrap justify-center gap-8 mb-16">
+          {Object.values(currentPlans).map((plan, index) => (
+            <PricingCard
+              key={plan?.name || index}
+              plan={plan}
+              type={selectedType}
+              duoStudents={duoStudents}
+              setDuoStudents={setDuoStudents}
+              formatPrice={formatPrice}
+              className={`animate-slide-up w-full ${plan.isWide
+                ? 'max-w-4xl'
+                : 'max-w-[400px] xl:max-w-[420px]'
+                }`}
+              style={{ animationDelay: `${0.1 * (index + 1)}s` }}
+            />
+          ))}
+        </div>
+
+        {/* Global Info Card (Wide) */}
+        <div className="max-w-5xl mx-auto mb-16 animate-fade-in">
+          <PricingCard
+            plan={infoPlanData}
+            type="info"
+            className="w-full"
+          />
+        </div>
+
+
+
+
         {/* Payment Methods removed as per request */}
 
-        {/* IA Plans */}
-        <div className="bg-card-dark rounded-2xl border border-border-dark p-8 mb-16 animate-fade-in">
-          <div className="text-center mb-8">
-            <h3 className="text-2xl font-bold text-text-primary mb-2">
-              Inteligencia Artificial IMCYC (se cotiza por separado)
-            </h3>
-            <p className="text-text-secondary">Costo por persona</p>
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
-            {[
-              { q: "500K", price: 129 },
-              { q: "1.25M", price: 299 },
-              { q: "2M", price: 499 },
-              { q: "5M", price: 999 },
-            ].map((p, idx) => {
-              return (
-                <div key={idx} className="bg-dark-bg rounded-xl p-6 border border-border-dark text-center">
-                  <div className="text-5xl font-bold text-text-primary mb-2">{p.q}</div>
-                  <div className="text-text-secondary mb-4">créditos</div>
-                  <div className="text-3xl font-bold text-text-primary mb-2">${p.price}</div>
-                  <div className="text-text-secondary text-sm">MXN</div>
-                </div>
-              );
-            })}
-          </div>
 
-          {/* Additional credits info */}
-          <div className="mt-8">
-            <div className="bg-blue-500/10 rounded-xl p-4 border border-blue-500/20">
-              <p className="text-sm text-text-primary text-center leading-relaxed">
-                ¿Necesitas más créditos?<br />
-                Puedes adquirir paquetes adicionales, desde tu cuenta.
-              </p>
-            </div>
-          </div>
-        </div>
 
       </div>
     </div>
