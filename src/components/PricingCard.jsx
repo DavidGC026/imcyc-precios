@@ -156,7 +156,6 @@ const PricingCard = ({
 
 
   return (
-  return (
     <div
       className={`relative bg-slate-900 rounded-[30px] p-8 transition-all duration-300 hover:-translate-y-2 ${className} ${isPopular ? 'ring-2 ring-blue-500 shadow-2xl shadow-blue-900/20' : ''
         }`}
