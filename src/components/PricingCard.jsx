@@ -156,15 +156,16 @@ const PricingCard = ({
 
 
   return (
+  return (
     <div
-      className={`relative bg-card-dark rounded-2xl border border-border-dark p-8 transition-all duration-300 hover:border-imcyc-blue hover:shadow-2xl hover:shadow-platzi-green/10 animate-scale-hover ${className} ${isPopular ? 'ring-2 ring-imcyc-blue' : ''
+      className={`relative bg-slate-900 rounded-[30px] p-8 transition-all duration-300 hover:-translate-y-2 ${className} ${isPopular ? 'ring-2 ring-blue-500 shadow-2xl shadow-blue-900/20' : ''
         }`}
       style={style}
     >
       {/* Popular Badge */}
       {isPopular && (
         <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
-          <div className="bg-gradient-to-r from-imcyc-blue to-imcyc-blue-light px-4 py-2 rounded-full text-dark-bg text-sm font-bold flex items-center gap-2 animate-bounce-subtle">
+          <div className="bg-blue-600 px-4 py-1.5 rounded-full text-white text-sm font-bold flex items-center gap-2 shadow-lg">
             <Star size={16} fill="currentColor" />
             Más popular
           </div>
@@ -176,7 +177,7 @@ const PricingCard = ({
         <div className="absolute -top-3 -right-3">
           <div className={`px-3 py-1 rounded-full text-white text-xs font-semibold transform rotate-12 shadow-lg ${type === 'membresias' && plan.discount > 0
             ? 'bg-gradient-to-r from-red-500 to-orange-500'
-            : 'bg-orange-500'
+            : 'bg-green-500'
             }`}>
             {type === 'membresias' && plan.discount > 0 ? 'SOLO HOY' : getSavingsText()}
           </div>
@@ -185,20 +186,20 @@ const PricingCard = ({
 
       {/* Plan Name */}
       <div className="mb-6">
-        <h3 className="text-2xl font-bold text-text-primary mb-2 flex items-center gap-2">
+        <h3 className="text-2xl font-bold text-white mb-2 flex items-center gap-2">
           {plan.name}
-          {isPopular && <Sparkles size={20} className="text-imcyc-blue" />}
+          {isPopular && <Sparkles size={20} className="text-blue-400" />}
         </h3>
 
         {/* Billing Toggle */}
         {(supportsMonthly || supportsYearly) && (
-          <div className="flex items-center gap-3 mb-4">
+          <div className="flex items-center gap-2 mb-4 bg-slate-800 p-1 rounded-full w-fit">
             {supportsMonthly && (
               <button
                 onClick={() => setBillingCycle('monthly')}
-                className={`px-3 py-1 rounded-full text-xs font-medium transition-all ${billingCycle === 'monthly'
-                  ? 'bg-imcyc-blue text-dark-bg'
-                  : 'bg-border-dark text-text-muted hover:text-text-secondary'
+                className={`px-3 py-1 rounded-full text-xs font-bold transition-all ${billingCycle === 'monthly'
+                  ? 'bg-blue-600 text-white'
+                  : 'text-slate-400 hover:text-white'
                   }`}
                 aria-pressed={billingCycle === 'monthly'}
               >
@@ -207,9 +208,9 @@ const PricingCard = ({
             )}
             <button
               onClick={() => setBillingCycle('yearly')}
-              className={`px-3 py-1 rounded-full text-xs font-medium transition-all ${billingCycle === 'yearly'
-                ? 'bg-imcyc-blue text-dark-bg'
-                : 'bg-border-dark text-text-muted hover:text-text-secondary'
+              className={`px-3 py-1 rounded-full text-xs font-bold transition-all ${billingCycle === 'yearly'
+                ? 'bg-blue-600 text-white'
+                : 'text-slate-400 hover:text-white'
                 }`}
               aria-pressed={billingCycle === 'yearly'}
             >
@@ -222,15 +223,15 @@ const PricingCard = ({
       {/* Duo Students Selector */}
       {isDuo && duoStudents && setDuoStudents && (
         <div className="mb-6">
-          <label className="block text-text-secondary text-sm font-medium mb-3">
+          <label className="block text-slate-400 text-sm font-medium mb-3">
             Número de estudiantes:
           </label>
           <div className="flex gap-2">
             <button
               onClick={() => setDuoStudents(2)}
-              className={`flex-1 px-3 py-2 rounded-lg border text-sm font-medium transition-all flex items-center justify-center gap-2 ${duoStudents === 2
-                ? 'border-imcyc-blue bg-imcyc-blue/10 text-imcyc-blue'
-                : 'border-border-dark text-text-muted hover:border-text-secondary hover:text-text-secondary'
+              className={`flex-1 px-3 py-2 rounded-xl border text-sm font-medium transition-all flex items-center justify-center gap-2 ${duoStudents === 2
+                ? 'border-blue-500 bg-blue-500/10 text-blue-400'
+                : 'border-slate-700 text-slate-400 hover:border-slate-500 hover:text-slate-200'
                 }`}
             >
               <Users size={16} />
@@ -238,9 +239,9 @@ const PricingCard = ({
             </button>
             <button
               onClick={() => setDuoStudents(4)}
-              className={`flex-1 px-3 py-2 rounded-lg border text-sm font-medium transition-all flex items-center justify-center gap-2 ${duoStudents === 4
-                ? 'border-imcyc-blue bg-imcyc-blue/10 text-imcyc-blue'
-                : 'border-border-dark text-text-muted hover:border-text-secondary hover:text-text-secondary'
+              className={`flex-1 px-3 py-2 rounded-xl border text-sm font-medium transition-all flex items-center justify-center gap-2 ${duoStudents === 4
+                ? 'border-blue-500 bg-blue-500/10 text-blue-400'
+                : 'border-slate-700 text-slate-400 hover:border-slate-500 hover:text-slate-200'
                 }`}
             >
               <Users size={16} />
@@ -255,10 +256,10 @@ const PricingCard = ({
         {/* Precio original tachado para membresías */}
         {type === 'membresias' && plan.originalYearlyPrice && billingCycle === 'yearly' && (
           <div className="flex items-baseline gap-3 mb-2">
-            <span className="text-2xl text-white line-through font-semibold">
+            <span className="text-2xl text-slate-500 line-through font-medium">
               ${formatPrice ? formatPrice(plan.originalYearlyPrice) : plan.originalYearlyPrice}
             </span>
-            <span className="bg-red-100 text-red-600 text-xs px-2 py-1 rounded-full font-semibold">
+            <span className="bg-red-500/20 text-red-400 text-xs px-2 py-1 rounded-full font-bold">
               SOLO HOY
             </span>
           </div>
@@ -267,26 +268,26 @@ const PricingCard = ({
         <div className="flex items-baseline gap-2">
           {typeof getCurrentPrice() === 'number' && !isNaN(getCurrentPrice()) ? (
             <>
-              <span className="text-4xl font-bold text-text-primary">
+              <span className="text-5xl font-bold text-white tracking-tight">
                 ${formatPrice ? formatPrice(getCurrentPrice()) : getCurrentPrice()}
               </span>
-              <span className="text-text-secondary">
+              <span className="text-slate-400 font-medium">
                 /{billingCycle === 'monthly' ? 'mes' : 'año'}
               </span>
             </>
           ) : (
-            <span className="text-2xl md:text-3xl font-semibold text-text-primary">A medida</span>
+            <span className="text-3xl font-bold text-white">A medida</span>
           )}
         </div>
 
         {billingCycle === 'yearly' && typeof getMonthlyEquivalent() === 'number' && !isNaN(getMonthlyEquivalent()) && (
-          <p className="text-text-muted text-sm mt-1">
+          <p className="text-slate-500 text-sm mt-2 font-medium">
             ${formatPrice ? formatPrice(getMonthlyEquivalent()) : getMonthlyEquivalent()}/mes facturado anualmente
           </p>
         )}
 
         {getSavingsText() && (
-          <p className="text-imcyc-blue text-sm font-semibold mt-2">
+          <p className="text-blue-400 text-sm font-bold mt-2">
             🎉 {getSavingsText()} al pagar anual
           </p>
         )}
@@ -294,20 +295,20 @@ const PricingCard = ({
 
       {/* Features List */}
       <div className="mb-8">
-        <h4 className="text-text-primary font-semibold mb-4">
+        <h4 className="text-white font-semibold mb-4 text-sm uppercase tracking-wider">
           Lo que incluye:
         </h4>
-        <ul className="space-y-3">
+        <ul className="space-y-4">
           {plan.features.map((feature, index) => (
             <li key={index} className="flex items-start gap-3">
-              <div className={`mt-0.5 ${feature.included ? 'text-imcyc-blue' : 'text-text-muted'}`}>
+              <div className={`mt-0.5 ${feature.included ? 'text-blue-500' : 'text-slate-600'}`}>
                 {feature.included ? (
-                  <Check size={18} strokeWidth={2.5} />
+                  <Check size={18} strokeWidth={3} />
                 ) : (
-                  <X size={18} strokeWidth={2} />
+                  <X size={18} strokeWidth={3} />
                 )}
               </div>
-              <span className={`text-sm ${feature.included ? 'text-text-primary' : 'text-text-muted line-through'
+              <span className={`text-sm font-medium ${feature.included ? 'text-slate-300' : 'text-slate-600 line-through'
                 }`}>
                 {feature.text}
               </span>
@@ -317,7 +318,7 @@ const PricingCard = ({
       </div>
 
       {/* CTA Button */}
-      <div className="space-y-3">
+      <div className="mt-auto">
         <button
           onClick={() => {
             if (plan.paymentLink) {
@@ -326,9 +327,9 @@ const PricingCard = ({
               window.open('https://wa.me/+525636853914', '_blank');
             }
           }}
-          className={`w-full py-4 px-6 rounded-xl font-semibold transition-all duration-300 flex items-center justify-center gap-2 ${isPopular
-            ? 'bg-imcyc-blue text-dark-bg hover:bg-imcyc-blue hover:shadow-lg hover:shadow-platzi-green/25'
-            : 'bg-card-dark border border-imcyc-blue text-imcyc-blue hover:bg-imcyc-blue hover:text-dark-bg'
+          className={`w-full py-4 px-6 rounded-[10px] font-bold transition-all duration-300 flex items-center justify-center gap-2 ${isPopular
+            ? 'bg-blue-600 text-white hover:bg-blue-700 hover:shadow-lg hover:shadow-blue-500/25'
+            : 'bg-slate-800 text-white hover:bg-slate-700'
             }`}
           aria-label={`Suscribirse al plan ${plan.name}`}
         >
@@ -340,8 +341,8 @@ const PricingCard = ({
 
       {/* Additional Info for Enterprise */}
       {plan.name.includes('Enterprise') && (
-        <div className="mt-4 pt-4 border-t border-border-dark">
-          <p className="text-text-muted text-xs text-center">
+        <div className="mt-4 pt-4 border-t border-slate-800">
+          <p className="text-slate-500 text-xs text-center font-medium">
             Incluye onboarding personalizado y soporte dedicado
           </p>
         </div>

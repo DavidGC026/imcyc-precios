@@ -181,79 +181,71 @@ const PricingSection = () => {
   const currentPlans = plansData[selectedType];
 
   return (
-    <div className="min-h-screen bg-dark-bg py-16 px-4">
-      <div className="max-w-7xl mx-auto">
+    <div className="min-h-screen bg-slate-950 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-slate-900 via-slate-950 to-black py-16 px-4">
+      <div className="max-w-[1400px] mx-auto">
         {/* Top-left logo */}
-        <div className="mb-6">
+        <div className="mb-8">
           <a href="/precios/" className="inline-flex items-center" aria-label="IMCYC Home">
             <img
               src="https://grabador.imcyc.com/TiendaImcyc/Imagenes/logo_imcyc.svg"
               alt="Logo IMCYC"
-              className="h-14 md:h-16 w-auto"
+              className="h-16 w-auto"
               loading="eager"
             />
           </a>
         </div>
         {/* Header */}
         <div className="text-center mb-16 animate-fade-in">
-          <h1 className="text-5xl md:text-6xl font-bold text-text-primary mb-6">
-            Precios <span className="text-imcyc-blue">Universidad Digital IMCYC</span>
+          <h1 className="text-5xl md:text-6xl font-bold text-white mb-6 tracking-tight">
+            Precios <span className="text-blue-500">Universidad Digital IMCYC</span>
           </h1>
-          <p className="text-xl text-text-secondary max-w-2xl mx-auto mb-12">
+          <p className="text-xl text-slate-400 max-w-2xl mx-auto mb-12 font-light">
             Elige el plan perfecto para tu carrera.<br />
             Aprende sin límites y acelera tu crecimiento profesional.
           </p>
 
           {/* Toggle Selector */}
           <div className="flex justify-center mb-16">
-            <div className="bg-card-dark rounded-full p-2 border border-border-dark">
-              <div className="flex">
+            <div className="bg-slate-900 rounded-full p-1.5 border border-slate-800 shadow-xl inline-flex">
+              <div className="flex items-center">
                 <button
                   onClick={() => setSelectedType('individual')}
-                  className={`px-8 py-3 rounded-full text-sm font-semibold transition-all duration-300 flex items-center gap-2 ${selectedType === 'individual'
-                    ? 'bg-imcyc-blue text-dark-bg'
-                    : 'text-text-secondary hover:text-text-primary'
+                  className={`px-8 py-3 rounded-full text-sm font-bold transition-all duration-300 flex items-center gap-2 ${selectedType === 'individual'
+                    ? 'bg-blue-600 text-white shadow-lg shadow-blue-900/20'
+                    : 'text-slate-400 hover:text-white hover:bg-white/5'
                     }`}
                   aria-pressed={selectedType === 'individual'}
                 >
                   <User size={18} />
                   Individual
                 </button>
-                <div className="flex items-center px-4">
-                  <div className="text-center">
-                    <p className="text-sm font-medium text-text-primary mb-1">
-                      MEMBRESÍAS
-                    </p>
-                    <p className="text-xs text-text-muted">
-                      Para empresas y profesionales
-                    </p>
-                  </div>
+                <div className="h-6 w-px bg-slate-800 mx-2"></div>
+                <div className="flex flex-col md:flex-row items-center">
+                  {/* Simple "Membresías" Label removed in favor of direct switcher integration style matching reference */}
+                  <button
+                    onClick={() => setSelectedType('membresias')}
+                    className={`px-8 py-3 rounded-full text-sm font-bold transition-all duration-300 flex items-center gap-2 ${selectedType === 'membresias'
+                      ? 'bg-blue-600 text-white shadow-lg shadow-blue-900/20'
+                      : 'text-slate-400 hover:text-white hover:bg-white/5'
+                      }`}
+                    aria-pressed={selectedType === 'membresias'}
+                  >
+                    <Building size={18} />
+                    Empresarial
+                  </button>
+                  <div className="h-6 w-px bg-slate-800 mx-2"></div>
+                  <button
+                    onClick={() => setSelectedType('asociaciones')}
+                    className={`px-8 py-3 rounded-full text-sm font-bold transition-all duration-300 flex items-center gap-2 ${selectedType === 'asociaciones'
+                      ? 'bg-blue-600 text-white shadow-lg shadow-blue-900/20'
+                      : 'text-slate-400 hover:text-white hover:bg-white/5'
+                      }`}
+                    aria-pressed={selectedType === 'asociaciones'}
+                  >
+                    <Users size={18} />
+                    Asociaciones
+                  </button>
                 </div>
-                <button
-                  onClick={() => setSelectedType('membresias')}
-                  className={`px-8 py-3 rounded-full text-sm font-semibold transition-all duration-300 flex items-center gap-2 ${selectedType === 'membresias'
-                    ? 'bg-imcyc-blue text-dark-bg'
-                    : 'text-text-secondary hover:text-text-primary'
-                    }`}
-                  aria-pressed={selectedType === 'membresias'}
-                >
-                  <Building size={18} />
-                  Empresarial
-                </button>
-                <div className="flex items-center px-4">
-                  <div className="w-px h-8 bg-border-dark"></div>
-                </div>
-                <button
-                  onClick={() => setSelectedType('asociaciones')}
-                  className={`px-8 py-3 rounded-full text-sm font-semibold transition-all duration-300 flex items-center gap-2 ${selectedType === 'asociaciones'
-                    ? 'bg-imcyc-blue text-dark-bg'
-                    : 'text-text-secondary hover:text-text-primary'
-                    }`}
-                  aria-pressed={selectedType === 'asociaciones'}
-                >
-                  <Users size={18} />
-                  Asociaciones
-                </button>
               </div>
             </div>
           </div>
