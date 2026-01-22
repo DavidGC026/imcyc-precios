@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { User, Building, Users, AlertCircle, UserPlus, Brain, Droplets, Layers, Building2, Factory, Landmark } from 'lucide-react';
+import { User, Building, Users, AlertCircle, UserPlus, Brain, Droplets, Layers, Building2, Factory, Landmark, CreditCard, Smartphone, ShieldCheck } from 'lucide-react';
 import PricingCard from './PricingCard';
 
 const PricingSection = () => {
@@ -295,6 +295,52 @@ const PricingSection = () => {
               style={{ animationDelay: `${0.1 * (index + 1)}s` }}
             />
           ))}
+        </div>
+
+        {/* Secure Payment Methods */}
+        <div className="mb-12 animate-fade-in">
+          <div className="text-center mb-8">
+            <h2 className="text-3xl font-bold text-white mb-2">Métodos de Pago Seguros</h2>
+            <p className="text-slate-400">Elige la forma de pago que más te convenga. Todos nuestros pagos son 100% seguros.</p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
+            {/* Tarjetas de Crédito */}
+            <div className="bg-slate-900/50 border border-slate-800 rounded-2xl p-6 text-center hover:bg-slate-800 transition-colors">
+              <div className="bg-blue-500/10 w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-4">
+                <CreditCard className="text-blue-400" size={24} />
+              </div>
+              <h3 className="text-white font-bold mb-1">Tarjetas de Crédito</h3>
+              <p className="text-slate-400 text-sm">Visa, MasterCard, American Express</p>
+            </div>
+
+            {/* Pagos Móviles */}
+            <div className="bg-slate-900/50 border border-slate-800 rounded-2xl p-6 text-center hover:bg-slate-800 transition-colors">
+              <div className="bg-blue-500/10 w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-4">
+                <Smartphone className="text-blue-400" size={24} />
+              </div>
+              <h3 className="text-white font-bold mb-1">Pagos Móviles</h3>
+              <p className="text-slate-400 text-sm">Apple Pay, Google Pay, PayPal</p>
+            </div>
+
+            {/* Transferencia Bancaria */}
+            <div className="bg-slate-900/50 border border-slate-800 rounded-2xl p-6 text-center hover:bg-slate-800 transition-colors">
+              <div className="bg-blue-500/10 w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-4">
+                <Building className="text-blue-400" size={24} />
+              </div>
+              <h3 className="text-white font-bold mb-1">Transferencia Bancaria</h3>
+              <p className="text-slate-400 text-sm">Transferencias locales e internacionales</p>
+            </div>
+
+            {/* Pago Seguro */}
+            <div className="bg-slate-900/50 border border-slate-800 rounded-2xl p-6 text-center hover:bg-slate-800 transition-colors">
+              <div className="bg-blue-500/10 w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-4">
+                <ShieldCheck className="text-blue-400" size={24} />
+              </div>
+              <h3 className="text-white font-bold mb-1">Pago Seguro</h3>
+              <p className="text-slate-400 text-sm">Encriptación SSL de 256 bits</p>
+            </div>
+          </div>
         </div>
 
         {/* Global Info Card (Wide) */}

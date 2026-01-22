@@ -317,7 +317,7 @@ const PricingCard = ({
             if (plan.paymentLink) {
               window.open(plan.paymentLink, '_blank');
             } else {
-              window.open('https://wa.me/+525636853914', '_blank');
+              window.open('https://wa.me/+525529098047', '_blank');
             }
           }}
           className="w-full py-3 px-6 rounded-lg font-bold bg-blue-600 text-white hover:bg-blue-700 hover:shadow-lg hover:shadow-blue-500/25 transition-all duration-300 flex items-center justify-center gap-2 uppercase text-sm tracking-wide"
