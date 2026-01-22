@@ -326,14 +326,11 @@ const PricingCard = ({
               window.open('https://wa.me/+525636853914', '_blank');
             }
           }}
-          className={`w-full py-4 px-6 rounded-[10px] font-bold transition-all duration-300 flex items-center justify-center gap-2 ${isPopular
-            ? 'bg-blue-600 text-white hover:bg-blue-700 hover:shadow-lg hover:shadow-blue-500/25'
-            : 'bg-slate-800 text-white hover:bg-slate-700'
-            }`}
+          className="w-full py-3 px-6 rounded-lg font-bold bg-blue-600 text-white hover:bg-blue-700 hover:shadow-lg hover:shadow-blue-500/25 transition-all duration-300 flex items-center justify-center gap-2 uppercase text-sm tracking-wide"
           aria-label={`Suscribirse al plan ${plan.name}`}
         >
-          {getButtonText()}
-          <ArrowRight size={18} />
+          {getButtonText() === 'Comenzar ahora' || getButtonText() === 'Pagar Ahora' ? 'MÁS INFORMACIÓN' : getButtonText()}
+          <ExternalLink size={16} />
         </button>
 
       </div>

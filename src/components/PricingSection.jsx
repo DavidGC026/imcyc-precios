@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { User, Building, Users } from 'lucide-react';
+import { User, Building, Users, AlertCircle } from 'lucide-react';
 import PricingCard from './PricingCard';
 
 const PricingSection = () => {
@@ -206,46 +206,51 @@ const PricingSection = () => {
 
           {/* Toggle Selector */}
           <div className="flex justify-center mb-16">
-            <div className="bg-slate-900 rounded-full p-1.5 border border-slate-800 shadow-xl inline-flex">
-              <div className="flex items-center">
+            <div className="bg-slate-900 rounded-full p-2 border border-slate-800 shadow-2xl flex items-center max-w-4xl w-full justify-between px-4 md:px-8">
+              <button
+                onClick={() => setSelectedType('individual')}
+                className={`px-8 py-3 rounded-full text-sm font-bold transition-all duration-300 flex items-center gap-3 ${selectedType === 'individual'
+                  ? 'bg-slate-700 text-white shadow-lg'
+                  : 'text-slate-400 hover:text-white'
+                  }`}
+                aria-pressed={selectedType === 'individual'}
+              >
+                <User size={20} />
+                INDIVIDUALES
+              </button>
+
+              <div className="hidden md:flex flex-col items-center px-4 opacity-60">
+                <p className="text-[10px] uppercase tracking-widest text-blue-400 font-bold mb-0.5">
+                  Membresías
+                </p>
+                <p className="text-[10px] text-slate-400 tracking-wider">
+                  PARA EMPRESAS Y PROFESIONALES
+                </p>
+              </div>
+
+              <div className="flex items-center gap-2">
                 <button
-                  onClick={() => setSelectedType('individual')}
-                  className={`px-8 py-3 rounded-full text-sm font-bold transition-all duration-300 flex items-center gap-2 ${selectedType === 'individual'
-                    ? 'bg-blue-600 text-white shadow-lg shadow-blue-900/20'
-                    : 'text-slate-400 hover:text-white hover:bg-white/5'
+                  onClick={() => setSelectedType('membresias')}
+                  className={`px-6 py-3 rounded-full text-sm font-bold transition-all duration-300 flex items-center gap-3 ${selectedType === 'membresias'
+                    ? 'bg-slate-700 text-white shadow-lg'
+                    : 'text-slate-400 hover:text-white'
                     }`}
-                  aria-pressed={selectedType === 'individual'}
+                  aria-pressed={selectedType === 'membresias'}
                 >
-                  <User size={18} />
-                  Individual
+                  <Building size={20} />
+                  <span className="hidden md:inline">EMPRESARIALES</span>
                 </button>
-                <div className="h-6 w-px bg-slate-800 mx-2"></div>
-                <div className="flex flex-col md:flex-row items-center">
-                  {/* Simple "Membresías" Label removed in favor of direct switcher integration style matching reference */}
-                  <button
-                    onClick={() => setSelectedType('membresias')}
-                    className={`px-8 py-3 rounded-full text-sm font-bold transition-all duration-300 flex items-center gap-2 ${selectedType === 'membresias'
-                      ? 'bg-blue-600 text-white shadow-lg shadow-blue-900/20'
-                      : 'text-slate-400 hover:text-white hover:bg-white/5'
-                      }`}
-                    aria-pressed={selectedType === 'membresias'}
-                  >
-                    <Building size={18} />
-                    Empresarial
-                  </button>
-                  <div className="h-6 w-px bg-slate-800 mx-2"></div>
-                  <button
-                    onClick={() => setSelectedType('asociaciones')}
-                    className={`px-8 py-3 rounded-full text-sm font-bold transition-all duration-300 flex items-center gap-2 ${selectedType === 'asociaciones'
-                      ? 'bg-blue-600 text-white shadow-lg shadow-blue-900/20'
-                      : 'text-slate-400 hover:text-white hover:bg-white/5'
-                      }`}
-                    aria-pressed={selectedType === 'asociaciones'}
-                  >
-                    <Users size={18} />
-                    Asociaciones
-                  </button>
-                </div>
+                <button
+                  onClick={() => setSelectedType('asociaciones')}
+                  className={`px-6 py-3 rounded-full text-sm font-bold transition-all duration-300 flex items-center gap-3 ${selectedType === 'asociaciones'
+                    ? 'bg-slate-700 text-white shadow-lg'
+                    : 'text-slate-400 hover:text-white'
+                    }`}
+                  aria-pressed={selectedType === 'asociaciones'}
+                >
+                  <Users size={20} />
+                  <span className="hidden md:inline">ASOCIACIONES</span>
+                </button>
               </div>
             </div>
           </div>
@@ -268,9 +273,10 @@ const PricingSection = () => {
         </div>
 
 
-        {/* Alert - Membresías */}
-        <div className="rounded-xl border-2 border-black bg-red-500 text-black p-4 mb-6">
-          <p className="text-center font-semibold">
+        {/* Alert - Membresías (Blue Info Bar) */}
+        <div className="bg-blue-600 rounded-full py-3 px-6 text-center shadow-lg shadow-blue-900/20 mb-12 max-w-4xl mx-auto">
+          <p className="text-white text-sm font-medium flex items-center justify-center gap-2">
+            <AlertCircle size={18} className="text-white" />
             Importante: Las membresías NO incluyen constancias de aptitud ni certificaciones presenciales.
           </p>
         </div>
