@@ -26,14 +26,14 @@ Una sección de precios moderna y responsive para Platzi, desarrollada con React
 ### 📱 Planes Incluidos
 
 #### Para Personas
-- **Profesional**: $99/mes - Acceso básico con cursos fundamentales
-- **Profesional Plus**: $299/mes - Plan completo con cursos avanzados (⭐ Más popular)
+- **Basic**: $19/mes - Acceso básico con cursos fundamentales
+- **Expert**: $39/mes - Plan completo con cursos avanzados (⭐ Más popular)
+- **Expert Duo**: $59-89/mes - Para 2-4 estudiantes
 
 #### Para Empresas
-- **Agua**: $15,000/año - Hasta 30 empleados
-- **Agregados**: $25,000/año - Hasta 100 empleados (⭐ Más popular)
-- **Concreto**: $35,000/año - Hasta 500 empleados
-- **Concreto**: $45,000/año - Mas de 500 empleados
+- **Team Basic**: $99/mes - Hasta 10 empleados
+- **Team Expert**: $199/mes - Hasta 50 empleados (⭐ Más popular)
+- **Enterprise**: $399-699/mes - Empleados ilimitados
 
 ## 🚀 Instalación
 
@@ -140,7 +140,7 @@ platzi-pricing/
 ## 🌟 Características Especiales
 
 ### Badges Dinámicos
-- "Más popular" en el plan Agregados
+- "Más popular" en el plan Expert
 - "Ahorras X meses" en planes anuales
 - Ofertas especiales para estudiantes
 
@@ -159,3 +159,25 @@ platzi-pricing/
 - **Mobile**: < 768px (1 columna)
 - **Tablet**: 768px - 1024px (2 columnas)
 - **Desktop**: > 1024px (3 columnas)
+
+## 🤝 Contribuir
+
+1. Fork el proyecto
+2. Crea una rama para tu feature (`git checkout -b feature/AmazingFeature`)
+3. Commit tus cambios (`git commit -m 'Add some AmazingFeature'`)
+4. Push a la rama (`git push origin feature/AmazingFeature`)
+5. Abre un Pull Request
+
+## 📄 Licencia
+
+Este proyecto está bajo la Licencia MIT - ver el archivo [LICENSE.md](LICENSE.md) para más detalles.
+
+## 🙏 Agradecimientos
+
+- Diseño inspirado en las mejores prácticas de pricing tables modernas
+- Iconos proporcionados por [Lucide](https://lucide.dev/)
+- Fuente tipográfica [Inter](https://fonts.google.com/specimen/Inter) de Google Fonts
+
+---
+
+¿Preguntas o sugerencias? ¡No dudes en abrir un issue! 🚀

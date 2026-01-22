@@ -7,6 +7,7 @@ const PricingCard = ({
   duoStudents,
   setDuoStudents,
   formatPrice,
+  onOpenPaymentModal,
   className = '',
   style = {}
 }) => {
@@ -154,18 +155,33 @@ const PricingCard = ({
     return 'Comenzar ahora';
   };
 
+  const handleButtonClick = () => {
+    if (type === 'individual') {
+      if (onOpenPaymentModal) {
+        const finalPrice = getCurrentPrice();
+        onOpenPaymentModal({
+          name: plan.name,
+          price: finalPrice,
+          billingCycle: billingCycle
+        });
+      }
+    } else {
+      window.open('https://wa.me/+525554671492', '_blank');
+    }
+  };
+
 
   return (
     <div
-      className={`relative bg-card-dark rounded-2xl border border-border-dark p-8 transition-all duration-300 hover:border-imcyc-blue hover:shadow-2xl hover:shadow-platzi-green/10 animate-scale-hover ${className} ${isPopular ? 'ring-2 ring-imcyc-blue' : ''
+      className={`relative bg-card-dark rounded-2xl border border-border-dark p-4 md:p-6 lg:p-8 transition-all duration-300 hover:border-imcyc-blue hover:shadow-2xl hover:shadow-platzi-green/10 animate-scale-hover ${className} ${isPopular ? 'ring-2 ring-imcyc-blue' : ''
         }`}
       style={style}
     >
       {/* Popular Badge */}
       {isPopular && (
-        <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
-          <div className="bg-gradient-to-r from-imcyc-blue to-imcyc-blue-light px-4 py-2 rounded-full text-dark-bg text-sm font-bold flex items-center gap-2 animate-bounce-subtle">
-            <Star size={16} fill="currentColor" />
+        <div className="absolute -top-4 left-1/2 transform -translate-x-1/2 w-max">
+          <div className="bg-gradient-to-r from-imcyc-blue to-imcyc-blue-light px-3 py-1.5 md:px-4 md:py-2 rounded-full text-dark-bg text-xs md:text-sm font-bold flex items-center gap-2 animate-bounce-subtle">
+            <Star size={14} className="md:w-4 md:h-4" fill="currentColor" />
             Más popular
           </div>
         </div>
@@ -173,8 +189,8 @@ const PricingCard = ({
 
       {/* Savings Badge */}
       {billingCycle === 'yearly' && (
-        <div className="absolute -top-3 -right-3">
-          <div className={`px-3 py-1 rounded-full text-white text-xs font-semibold transform rotate-12 shadow-lg ${type === 'membresias' && plan.discount > 0
+        <div className="absolute -top-3 -right-3 z-10">
+          <div className={`px-2 py-0.5 md:px-3 md:py-1 rounded-full text-white text-[10px] md:text-xs font-semibold transform rotate-12 shadow-lg ${type === 'membresias' && plan.discount > 0
             ? 'bg-gradient-to-r from-red-500 to-orange-500'
             : 'bg-orange-500'
             }`}>
@@ -184,19 +200,19 @@ const PricingCard = ({
       )}
 
       {/* Plan Name */}
-      <div className="mb-6">
-        <h3 className="text-2xl font-bold text-text-primary mb-2 flex items-center gap-2">
+      <div className="mb-4 md:mb-6">
+        <h3 className="text-xl md:text-2xl font-bold text-text-primary mb-2 flex items-center gap-2">
           {plan.name}
-          {isPopular && <Sparkles size={20} className="text-imcyc-blue" />}
+          {isPopular && <Sparkles size={18} className="text-imcyc-blue md:w-5 md:h-5" />}
         </h3>
 
         {/* Billing Toggle */}
         {(supportsMonthly || supportsYearly) && (
-          <div className="flex items-center gap-3 mb-4">
+          <div className="flex items-center gap-2 md:gap-3 mb-2 md:mb-4">
             {supportsMonthly && (
               <button
                 onClick={() => setBillingCycle('monthly')}
-                className={`px-3 py-1 rounded-full text-xs font-medium transition-all ${billingCycle === 'monthly'
+                className={`px-2 py-0.5 md:px-3 md:py-1 rounded-full text-[10px] md:text-xs font-medium transition-all ${billingCycle === 'monthly'
                   ? 'bg-imcyc-blue text-dark-bg'
                   : 'bg-border-dark text-text-muted hover:text-text-secondary'
                   }`}
@@ -207,7 +223,7 @@ const PricingCard = ({
             )}
             <button
               onClick={() => setBillingCycle('yearly')}
-              className={`px-3 py-1 rounded-full text-xs font-medium transition-all ${billingCycle === 'yearly'
+              className={`px-2 py-0.5 md:px-3 md:py-1 rounded-full text-[10px] md:text-xs font-medium transition-all ${billingCycle === 'yearly'
                 ? 'bg-imcyc-blue text-dark-bg'
                 : 'bg-border-dark text-text-muted hover:text-text-secondary'
                 }`}
@@ -221,29 +237,29 @@ const PricingCard = ({
 
       {/* Duo Students Selector */}
       {isDuo && duoStudents && setDuoStudents && (
-        <div className="mb-6">
-          <label className="block text-text-secondary text-sm font-medium mb-3">
+        <div className="mb-4 md:mb-6">
+          <label className="block text-text-secondary text-xs md:text-sm font-medium mb-2 md:mb-3">
             Número de estudiantes:
           </label>
           <div className="flex gap-2">
             <button
               onClick={() => setDuoStudents(2)}
-              className={`flex-1 px-3 py-2 rounded-lg border text-sm font-medium transition-all flex items-center justify-center gap-2 ${duoStudents === 2
+              className={`flex-1 px-2 py-1.5 md:px-3 md:py-2 rounded-lg border text-xs md:text-sm font-medium transition-all flex items-center justify-center gap-1.5 md:gap-2 ${duoStudents === 2
                 ? 'border-imcyc-blue bg-imcyc-blue/10 text-imcyc-blue'
                 : 'border-border-dark text-text-muted hover:border-text-secondary hover:text-text-secondary'
                 }`}
             >
-              <Users size={16} />
+              <Users size={14} className="md:w-4 md:h-4" />
               2 personas
             </button>
             <button
               onClick={() => setDuoStudents(4)}
-              className={`flex-1 px-3 py-2 rounded-lg border text-sm font-medium transition-all flex items-center justify-center gap-2 ${duoStudents === 4
+              className={`flex-1 px-2 py-1.5 md:px-3 md:py-2 rounded-lg border text-xs md:text-sm font-medium transition-all flex items-center justify-center gap-1.5 md:gap-2 ${duoStudents === 4
                 ? 'border-imcyc-blue bg-imcyc-blue/10 text-imcyc-blue'
                 : 'border-border-dark text-text-muted hover:border-text-secondary hover:text-text-secondary'
                 }`}
             >
-              <Users size={16} />
+              <Users size={14} className="md:w-4 md:h-4" />
               4 personas
             </button>
           </div>
@@ -251,26 +267,26 @@ const PricingCard = ({
       )}
 
       {/* Pricing */}
-      <div className="mb-8">
+      <div className="mb-6 md:mb-8">
         {/* Precio original tachado para membresías */}
         {type === 'membresias' && plan.originalYearlyPrice && billingCycle === 'yearly' && (
-          <div className="flex items-baseline gap-3 mb-2">
-            <span className="text-2xl text-white line-through font-semibold">
+          <div className="flex items-baseline gap-2 md:gap-3 mb-1 md:mb-2">
+            <span className="text-lg md:text-2xl text-white line-through font-semibold">
               ${formatPrice ? formatPrice(plan.originalYearlyPrice) : plan.originalYearlyPrice}
             </span>
-            <span className="bg-red-100 text-red-600 text-xs px-2 py-1 rounded-full font-semibold">
+            <span className="bg-red-100 text-red-600 text-[10px] md:text-xs px-1.5 py-0.5 md:px-2 md:py-1 rounded-full font-semibold">
               SOLO HOY
             </span>
           </div>
         )}
 
-        <div className="flex items-baseline gap-2">
+        <div className="flex items-baseline gap-1 md:gap-2">
           {typeof getCurrentPrice() === 'number' && !isNaN(getCurrentPrice()) ? (
             <>
-              <span className="text-4xl font-bold text-text-primary">
+              <span className="text-3xl md:text-4xl font-bold text-text-primary">
                 ${formatPrice ? formatPrice(getCurrentPrice()) : getCurrentPrice()}
               </span>
-              <span className="text-text-secondary">
+              <span className="text-sm md:text-base text-text-secondary">
                 /{billingCycle === 'monthly' ? 'mes' : 'año'}
               </span>
             </>
@@ -319,9 +335,7 @@ const PricingCard = ({
       {/* CTA Button */}
       <div className="space-y-3">
         <button
-          onClick={() => {
-            window.open('https://wa.me/+525554671492', '_blank');
-          }}
+          onClick={handleButtonClick}
           className={`w-full py-4 px-6 rounded-xl font-semibold transition-all duration-300 flex items-center justify-center gap-2 ${isPopular
             ? 'bg-imcyc-blue text-dark-bg hover:bg-imcyc-blue hover:shadow-lg hover:shadow-platzi-green/25'
             : 'bg-card-dark border border-imcyc-blue text-imcyc-blue hover:bg-imcyc-blue hover:text-dark-bg'

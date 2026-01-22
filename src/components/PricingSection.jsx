@@ -2,10 +2,15 @@ import React, { useState } from 'react';
 import { User, Building } from 'lucide-react';
 import PricingCard from './PricingCard';
 import PaymentMethods from './PaymentMethods';
+import PaymentModal from './PaymentModal';
 
 const PricingSection = () => {
   const [selectedType, setSelectedType] = useState('individual'); // 'individual' | 'membresias'
   const [duoStudents, setDuoStudents] = useState(2); // 2 | 4
+
+  // Modal State
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [selectedPlanDetails, setSelectedPlanDetails] = useState(null);
 
   // Función para formatear precios con comas
   const formatPrice = (price) => {
@@ -13,6 +18,10 @@ const PricingSection = () => {
     return price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
   };
 
+  const handleOpenModal = (planDetails) => {
+    setSelectedPlanDetails(planDetails);
+    setIsModalOpen(true);
+  };
 
   // Datos de los planes
   const plansData = {
@@ -166,49 +175,49 @@ const PricingSection = () => {
           </a>
         </div>
         {/* Header */}
-        <div className="text-center mb-16 animate-fade-in">
-          <h1 className="text-5xl md:text-6xl font-bold text-text-primary mb-6">
-            Precios <span className="text-imcyc-blue">Universidad Digital IMCYC</span>
+        <div className="text-center mb-10 md:mb-16 animate-fade-in">
+          <h1 className="text-3xl md:text-5xl lg:text-6xl font-bold text-text-primary mb-4 md:mb-6 px-2">
+            Precios <span className="text-imcyc-blue block md:inline">Universidad Digital IMCYC</span>
           </h1>
-          <p className="text-xl text-text-secondary max-w-2xl mx-auto mb-12">
-            Elige el plan perfecto para tu carrera.<br />
+          <p className="text-lg md:text-xl text-text-secondary max-w-2xl mx-auto mb-8 md:mb-12 px-4">
+            Elige el plan perfecto para tu carrera.<br className="hidden md:block" />
             Aprende sin límites y acelera tu crecimiento profesional.
           </p>
 
           {/* Toggle Selector */}
-          <div className="flex justify-center mb-16">
-            <div className="bg-card-dark rounded-full p-2 border border-border-dark">
-              <div className="flex">
+          <div className="flex justify-center mb-10 md:mb-16 px-2">
+            <div className="bg-card-dark rounded-full p-1.5 md:p-2 border border-border-dark max-w-full overflow-x-auto">
+              <div className="flex min-w-max">
                 <button
                   onClick={() => setSelectedType('individual')}
-                  className={`px-8 py-3 rounded-full text-sm font-semibold transition-all duration-300 flex items-center gap-2 ${selectedType === 'individual'
+                  className={`px-4 md:px-8 py-2 md:py-3 rounded-full text-xs md:text-sm font-semibold transition-all duration-300 flex items-center gap-2 ${selectedType === 'individual'
                     ? 'bg-imcyc-blue text-dark-bg'
                     : 'text-text-secondary hover:text-text-primary'
                     }`}
                   aria-pressed={selectedType === 'individual'}
                 >
-                  <User size={18} />
+                  <User size={16} className="md:w-[18px] md:h-[18px]" />
                   Individual
                 </button>
-                <div className="flex items-center px-4">
+                <div className="flex items-center px-2 md:px-4 hidden sm:flex">
                   <div className="text-center">
-                    <p className="text-sm font-medium text-text-primary mb-1">
+                    <p className="text-xs md:text-sm font-medium text-text-primary mb-0.5 md:mb-1">
                       MEMBRESÍAS
                     </p>
-                    <p className="text-xs text-text-muted">
+                    <p className="text-[10px] md:text-xs text-text-muted">
                       Para empresas y profesionales
                     </p>
                   </div>
                 </div>
                 <button
                   onClick={() => setSelectedType('membresias')}
-                  className={`px-8 py-3 rounded-full text-sm font-semibold transition-all duration-300 flex items-center gap-2 ${selectedType === 'membresias'
+                  className={`px-4 md:px-8 py-2 md:py-3 rounded-full text-xs md:text-sm font-semibold transition-all duration-300 flex items-center gap-2 ${selectedType === 'membresias'
                     ? 'bg-imcyc-blue text-dark-bg'
                     : 'text-text-secondary hover:text-text-primary'
                     }`}
                   aria-pressed={selectedType === 'membresias'}
                 >
-                  <Building size={18} />
+                  <Building size={16} className="md:w-[18px] md:h-[18px]" />
                   Empresarial
                 </button>
               </div>
@@ -226,6 +235,7 @@ const PricingSection = () => {
               duoStudents={duoStudents}
               setDuoStudents={setDuoStudents}
               formatPrice={formatPrice}
+              onOpenPaymentModal={handleOpenModal}
               className="animate-slide-up"
               style={{ animationDelay: `${0.1 * (index + 1)}s` }}
             />
@@ -281,6 +291,13 @@ const PricingSection = () => {
         </div>
 
       </div>
+
+      {/* Payment Modal */}
+      <PaymentModal
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+        planDetails={selectedPlanDetails}
+      />
     </div>
   );
 };
