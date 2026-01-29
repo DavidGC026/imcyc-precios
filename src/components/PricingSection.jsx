@@ -69,27 +69,7 @@ const PricingSection = () => {
       }
     },
     membresias: {
-      agua: {
-        name: 'Agua',
-        icon: Droplets,
-        monthlyPrice: null,
-        yearlyPrice: 15000,
-        discount: 0,
-        savings: '—',
-        features: [
-          { text: 'Hasta 30 empleados', included: true },
-          { text: 'Publicaciones 5% de descuento', included: true },
-          { text: 'Acceso a IA, IMCYC (incl. 1M créditos)', included: true },
-          { text: 'Logotipo en página web', included: true },
-          { text: 'Presencia en redes: 1 publicación/mes', included: true },
-          { text: 'Descuento en publicidad 5%', included: true },
-          { text: 'Descuento en enseñanza 5%', included: true },
-          { text: 'Descuento en pruebas de laboratorio 3%', included: true },
-          { text: 'Descuento en viajes técnicos 5%', included: true },
-          { text: 'Descuento en sellos de calidad 3%', included: true },
-          { text: 'Incluye los beneficios del Plan Profesional Plus', included: true },
-        ]
-      },
+
       agregados: {
         name: 'Agregados',
         icon: Layers,
@@ -99,7 +79,7 @@ const PricingSection = () => {
         savings: '—',
         popular: true,
         features: [
-          { text: 'Desde 31, hasta 100 empleados', included: true },
+          { text: 'Hasta 30 empleados', included: true },
           { text: 'Logotipo en página web', included: true },
           { text: 'Acceso a IA, IMCYC (incl. 2.250M créditos)', included: true },
           { text: 'Presencia en redes: 2 publicación/mes', included: true },
@@ -119,7 +99,7 @@ const PricingSection = () => {
         discount: 0,
         savings: '—',
         features: [
-          { text: 'Desde 101, hasta 500 empleados', included: true },
+          { text: 'Desde 31, hasta 100 empleados', included: true },
           { text: 'Logotipo en página web', included: true },
           { text: 'Acceso a IA, IMCYC (incl. 4M créditos)', included: true },
           { text: 'Presencia en redes: 3 publicación/mes', included: true },
@@ -140,7 +120,7 @@ const PricingSection = () => {
         savings: '—',
         isWide: true,
         features: [
-          { text: 'Más de 500 empleados', included: true },
+          { text: 'Desde 101, hasta 500 empleados', included: true },
           { text: 'Logotipo en página web', included: true },
           { text: 'Acceso a IA, IMCYC (incl. 8M créditos)', included: true },
           { text: 'Presencia en redes: 4 publicación/mes', included: true },
@@ -220,51 +200,59 @@ const PricingSection = () => {
 
           {/* Toggle Selector */}
           <div className="flex justify-center mb-16">
-            <div className="bg-slate-900 rounded-full p-2 border border-slate-800 shadow-2xl flex items-center max-w-4xl w-full justify-between px-4 md:px-8">
-              <button
-                onClick={() => setSelectedType('individual')}
-                className={`px-8 py-3 rounded-full text-sm font-bold transition-all duration-300 flex items-center gap-3 ${selectedType === 'individual'
-                  ? 'bg-slate-700 text-white shadow-lg'
-                  : 'text-slate-400 hover:text-white'
-                  }`}
-                aria-pressed={selectedType === 'individual'}
-              >
-                <User size={20} />
-                INDIVIDUALES
-              </button>
+            <div className="bg-[#020617] rounded-[50px] p-8 border border-slate-800/50 shadow-2xl max-w-5xl w-full relative overflow-hidden">
+              {/* Decorative Glow */}
+              <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full bg-blue-500/5 blur-3xl rounded-full pointer-events-none" />
 
-              <div className="hidden md:flex flex-col items-center px-4 opacity-60">
-                <p className="text-[10px] uppercase tracking-widest text-blue-400 font-bold mb-0.5">
-                  Membresías
-                </p>
-                <p className="text-[10px] text-slate-400 tracking-wider">
-                  PARA EMPRESAS Y PROFESIONALES
-                </p>
-              </div>
+              <div className="relative z-10 flex flex-col items-center">
+                {/* Header Text */}
+                <div className="text-center mb-8">
+                  <h3 className="text-white font-black tracking-[0.2em] text-sm mb-2 uppercase">
+                    Membresías
+                  </h3>
+                  <p className="text-blue-400 text-xs tracking-[0.15em] font-bold uppercase">
+                    Para Empresas y Profesionales
+                  </p>
+                </div>
 
-              <div className="flex items-center gap-2">
-                <button
-                  onClick={() => setSelectedType('membresias')}
-                  className={`px-6 py-3 rounded-full text-sm font-bold transition-all duration-300 flex items-center gap-3 ${selectedType === 'membresias'
-                    ? 'bg-slate-700 text-white shadow-lg'
-                    : 'text-slate-400 hover:text-white'
-                    }`}
-                  aria-pressed={selectedType === 'membresias'}
-                >
-                  <Building size={20} />
-                  <span className="hidden md:inline">EMPRESARIALES</span>
-                </button>
-                <button
-                  onClick={() => setSelectedType('asociaciones')}
-                  className={`px-6 py-3 rounded-full text-sm font-bold transition-all duration-300 flex items-center gap-3 ${selectedType === 'asociaciones'
-                    ? 'bg-slate-700 text-white shadow-lg'
-                    : 'text-slate-400 hover:text-white'
-                    }`}
-                  aria-pressed={selectedType === 'asociaciones'}
-                >
-                  <Users size={20} />
-                  <span className="hidden md:inline">ASOCIACIONES</span>
-                </button>
+                {/* Buttons Grid */}
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-4 w-full px-4">
+                  <button
+                    onClick={() => setSelectedType('individual')}
+                    className={`group relative px-6 py-4 rounded-full text-sm font-bold transition-all duration-300 flex items-center justify-center gap-3 overflow-hidden ${selectedType === 'individual'
+                      ? 'bg-slate-800/80 text-white border border-blue-500 shadow-[0_0_20px_rgba(59,130,246,0.15)]'
+                      : 'bg-transparent text-slate-400 hover:text-white hover:bg-slate-800/50 border border-transparent'
+                      }`}
+                    aria-pressed={selectedType === 'individual'}
+                  >
+                    <User size={18} className={selectedType === 'individual' ? 'text-blue-400' : 'group-hover:text-blue-400 transition-colors'} />
+                    <span>INDIVIDUALES</span>
+                  </button>
+
+                  <button
+                    onClick={() => setSelectedType('membresias')}
+                    className={`group relative px-6 py-4 rounded-full text-sm font-bold transition-all duration-300 flex items-center justify-center gap-3 overflow-hidden ${selectedType === 'membresias'
+                      ? 'bg-slate-800/80 text-white border border-blue-500 shadow-[0_0_20px_rgba(59,130,246,0.15)]'
+                      : 'bg-transparent text-slate-400 hover:text-white hover:bg-slate-800/50 border border-transparent'
+                      }`}
+                    aria-pressed={selectedType === 'membresias'}
+                  >
+                    <Building size={18} className={selectedType === 'membresias' ? 'text-blue-400' : 'group-hover:text-blue-400 transition-colors'} />
+                    <span>EMPRESARIALES</span>
+                  </button>
+
+                  <button
+                    onClick={() => setSelectedType('asociaciones')}
+                    className={`group relative px-6 py-4 rounded-full text-sm font-bold transition-all duration-300 flex items-center justify-center gap-3 overflow-hidden ${selectedType === 'asociaciones'
+                      ? 'bg-slate-800/80 text-white border border-blue-500 shadow-[0_0_20px_rgba(59,130,246,0.15)]'
+                      : 'bg-transparent text-slate-400 hover:text-white hover:bg-slate-800/50 border border-transparent'
+                      }`}
+                    aria-pressed={selectedType === 'asociaciones'}
+                  >
+                    <Users size={18} className={selectedType === 'asociaciones' ? 'text-blue-400' : 'group-hover:text-blue-400 transition-colors'} />
+                    <span>ASOCIACIONES</span>
+                  </button>
+                </div>
               </div>
             </div>
           </div>
