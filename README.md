@@ -1,4 +1,4 @@
-# 💳 Platzi Pricing Section
+# 💳 Imcyc Precios Membresias
 
 Una sección de precios moderna y responsive para Platzi, desarrollada con React y TailwindCSS.
 
