@@ -1,7 +1,8 @@
 <?php
 /**
  * Webhook Openpay — membresías /precios
- * Registrar en panel: https://grabador.imcyc.com/precios/api/openpay-webhook.php
+ * URL: https://grabador.imcyc.com/precios/api/openpay-webhook.php
+ * Log: /var/www/sources/openpay/precios-openpay-webhook.log
  * Ver precios-webhook.env.example (HTTP Basic).
  */
 require_once __DIR__ . '/config.php';
@@ -33,26 +34,65 @@ function webhook_auth_fail(): void {
 }
 
 $rawPayload = file_get_contents('php://input');
+openpay_precios_webhook_log_request($rawPayload);
 
 if (($_SERVER['REQUEST_METHOD'] ?? '') !== 'POST') {
     webhook_respond(['processed' => false], 'Método ignorado');
 }
 
+$event = json_decode($rawPayload, true);
+$eventType = is_array($event) ? (string) ($event['type'] ?? $event['event'] ?? '') : '';
+
+// Verificación al registrar webhook en panel Openpay (type: verification + verification_code).
+if ($eventType === 'verification') {
+    $verificationCode = trim((string) ($event['verification_code'] ?? ''));
+    openpay_precios_webhook_log_verification($verificationCode, is_array($event) ? $event : [], $rawPayload);
+
+    try {
+        $eventKey = openpay_webhook_event_key(is_array($event) ? $event : [], $rawPayload);
+        mark_openpay_webhook_event_processed(
+            $eventKey,
+            'verification',
+            $verificationCode !== '' ? $verificationCode : null,
+            $rawPayload
+        );
+    } catch (Throwable $dbErr) {
+        openpay_precios_webhook_log_diag([
+            'step' => 'verification_db',
+            'detail' => $dbErr->getMessage(),
+        ]);
+    }
+
+    webhook_respond([
+        'processed' => true,
+        'event_type' => 'verification',
+        'verification_code' => $verificationCode,
+        'log_file' => openpay_precios_webhook_log_path(),
+        'hint' => $verificationCode !== ''
+            ? 'Copia verification_code al panel Openpay para completar la verificación'
+            : 'Revisa precios-openpay-webhook.log',
+    ], 'Código de verificación registrado en log');
+}
+
 if (!verify_openpay_webhook_auth()) {
+    openpay_precios_webhook_log_diag(['step' => 'auth', 'detail' => 'HTTP Basic rechazado']);
     error_log('openpay-webhook.php: autenticación rechazada');
     webhook_auth_fail();
 }
 
 try {
-    $event = json_decode($rawPayload, true);
     if (!is_array($event)) {
         webhook_respond(['processed' => false], 'Payload no JSON');
     }
 
-    $eventType = (string) ($event['type'] ?? $event['event'] ?? '');
     $eventKey = openpay_webhook_event_key($event, $rawPayload);
 
     if (is_openpay_webhook_event_processed($eventKey)) {
+        openpay_precios_webhook_log_diag([
+            'step' => 'duplicate',
+            'event_key' => $eventKey,
+            'event_type' => $eventType,
+        ]);
         webhook_respond(['processed' => false, 'duplicate' => true, 'event_key' => $eventKey], 'Evento ya procesado');
     }
 
@@ -117,6 +157,14 @@ try {
 
     mark_openpay_webhook_event_processed($eventKey, $eventType, $orderRef, $rawPayload);
 
+    openpay_precios_webhook_log_append([
+        'kind' => 'processed',
+        'event_type' => $eventType,
+        'event_key' => $eventKey,
+        'order_ref' => $orderRef,
+        'rows_updated' => $updated,
+    ]);
+
     webhook_respond([
         'processed' => true,
         'event_type' => $eventType,
@@ -125,6 +173,10 @@ try {
         'rows_updated' => $updated,
     ], 'Webhook procesado');
 } catch (Throwable $e) {
+    openpay_precios_webhook_log_diag([
+        'step' => 'exception',
+        'detail' => $e->getMessage(),
+    ]);
     error_log('openpay-webhook.php: ' . $e->getMessage());
     webhook_respond(['processed' => false, 'error' => 'logged'], 'Error interno registrado');
 }

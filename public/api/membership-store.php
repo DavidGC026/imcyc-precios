@@ -159,6 +159,99 @@ function verify_openpay_webhook_auth(): bool {
     return hash_equals($creds['user'], $user) && hash_equals($creds['pass'], $pass);
 }
 
+/** Log de webhook /precios (verificación Openpay, diagnóstico, payloads). */
+function openpay_precios_webhook_log_path(): string {
+    return membership_persistent_openpay_dir() . '/precios-openpay-webhook.log';
+}
+
+function openpay_precios_webhook_request_header(string $name): string {
+    $target = strtolower($name);
+    if (function_exists('getallheaders')) {
+        foreach (getallheaders() as $headerName => $headerValue) {
+            if (strtolower((string) $headerName) === $target) {
+                return trim((string) $headerValue);
+            }
+        }
+    }
+    $serverKey = 'HTTP_' . strtoupper(str_replace('-', '_', $name));
+    $value = trim((string) ($_SERVER[$serverKey] ?? ''));
+    if ($value !== '') {
+        return $value;
+    }
+    if ($target === 'authorization') {
+        return trim((string) ($_SERVER['REDIRECT_HTTP_AUTHORIZATION'] ?? ''));
+    }
+
+    return '';
+}
+
+function openpay_precios_webhook_log_append(array $entry): void {
+    $entry['app'] = 'imcyc-precios';
+    $entry['at'] = $entry['at'] ?? date('c');
+
+    $path = openpay_precios_webhook_log_path();
+    $dir = dirname($path);
+    if (!is_dir($dir)) {
+        @mkdir($dir, 0750, true);
+    }
+
+    @file_put_contents(
+        $path,
+        json_encode($entry, JSON_UNESCAPED_UNICODE) . PHP_EOL,
+        FILE_APPEND | LOCK_EX
+    );
+}
+
+/**
+ * Registra cada POST (incluye evento verification antes de validar auth).
+ */
+function openpay_precios_webhook_log_request(string $rawPayload, array $extra = []): void {
+    $headers = [];
+    foreach (['content-type', 'user-agent', 'signature-digest'] as $headerName) {
+        $value = openpay_precios_webhook_request_header($headerName);
+        if ($value !== '') {
+            $headers[$headerName] = $value;
+        }
+    }
+
+    $auth = openpay_precios_webhook_request_header('authorization');
+    if ($auth !== '') {
+        $headers['authorization'] = (stripos($auth, 'basic ') === 0) ? 'Basic [oculto]' : '[oculto]';
+    }
+
+    $event = json_decode($rawPayload, true);
+    $eventType = is_array($event) ? (string) ($event['type'] ?? $event['event'] ?? '') : '';
+
+    openpay_precios_webhook_log_append(array_merge([
+        'kind' => 'request',
+        'method' => $_SERVER['REQUEST_METHOD'] ?? '',
+        'remote_addr' => $_SERVER['REMOTE_ADDR'] ?? '',
+        'event_type' => $eventType,
+        'headers' => $headers,
+        'payload' => $rawPayload,
+    ], $extra));
+}
+
+/**
+ * Destaca el código que Openpay pide ingresar en el panel al verificar el webhook.
+ */
+function openpay_precios_webhook_log_verification(string $verificationCode, array $event, string $rawPayload): void {
+    openpay_precios_webhook_log_append([
+        'kind' => 'verification',
+        'verification_code' => $verificationCode,
+        'event_id' => $event['id'] ?? null,
+        'event_date' => $event['event_date'] ?? null,
+        'message' => $verificationCode !== ''
+            ? 'Ingresa verification_code en el panel Openpay (Configuración → Webhooks)'
+            : 'Evento verification sin verification_code',
+        'payload' => $rawPayload,
+    ]);
+}
+
+function openpay_precios_webhook_log_diag(array $data): void {
+    openpay_precios_webhook_log_append(array_merge(['kind' => 'diagnostic'], $data));
+}
+
 function openpay_webhook_event_key(array $event, string $rawPayload): string {
     if (!empty($event['id'])) {
         return 'id:' . (string) $event['id'];

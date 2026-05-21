@@ -42,4 +42,4 @@ sudo chmod 640 /var/www/sources/openpay/config.php /var/www/sources/openpay/mail
 sudo chmod 640 /var/www/sources/openpay/precios-*.env
 ```
 
-No versionar en git: `config.php`, `mail.php`, `precios-*.env`, `openpay-webhook.log`, `memberships-data/`.
+No versionar en git: `config.php`, `mail.php`, `precios-*.env`, `openpay-webhook.log`, `precios-openpay-webhook.log`, `memberships-data/`.
