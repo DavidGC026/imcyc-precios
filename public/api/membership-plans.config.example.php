@@ -1,9 +1,9 @@
 <?php
 /**
- * Copiar según entorno:
+ * Plantillas en examples/sources/openpay/membership-plans.*.php.example
  * - Producción: /var/www/sources/openpay/membership-plans.production.php
- * - Sandbox:     /var/www/sources/openpay/membership-plans.sandbox.php
- * - Local:       membership-plans.config.php (este directorio)
+ * - Sandbox:    /var/www/sources/openpay/membership-plans.sandbox.php
+ * - Local dev:  membership-plans.config.php (este directorio)
  */
 return [
     'profesional-monthly' => ['openpay_plan_id' => ''],

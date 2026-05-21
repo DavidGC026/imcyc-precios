@@ -1,0 +1,17 @@
+<?php
+/**
+ * SMTP — copiar a /var/www/sources/openpay/mail.php
+ * Usado por Tienda IMCYC; /precios no lo requiere para pagos Openpay.
+ */
+return [
+    'host' => 'mail.tudominio.com',
+    'username' => 'usuario_smtp',
+    'password' => 'CONTRASEÑA_SMTP',
+    'port' => 587,
+    'secure' => 'tls',
+    'from_email' => 'noreply@tudominio.com',
+    'from_name' => 'Sistema IMCYC',
+    'admin_recipients' => [
+        'admin@tudominio.com',
+    ],
+];

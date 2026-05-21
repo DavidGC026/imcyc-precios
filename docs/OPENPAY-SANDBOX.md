@@ -11,6 +11,9 @@ La tienda (`TiendaImcyc`) puede seguir en producción. Para membresías:
 ### Opción A — Archivo bandera (recomendada, sobrevive al `pnpm build`)
 
 ```bash
+Ver plantillas sin secretos: `examples/sources/openpay/README.md`
+
+```bash
 sudo mkdir -p /var/www/sources/openpay
 sudo touch /var/www/sources/openpay/precios-sandbox.enabled
 ```

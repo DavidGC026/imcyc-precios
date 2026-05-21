@@ -1,0 +1,13 @@
+<?php
+/**
+ * Planes Openpay LIVE — copiar a /var/www/sources/openpay/membership-plans.production.php
+ *
+ * Obtén cada openpay_plan_id en: dashboard.openpay.mx → Planes / Suscripciones.
+ * Claves deben coincidir con membership-plans.php (profesional-monthly, etc.).
+ */
+return [
+    'profesional-monthly' => ['openpay_plan_id' => 'TU_PLAN_ID_MENSUAL_PRO'],
+    'profesional-plus-monthly' => ['openpay_plan_id' => 'TU_PLAN_ID_MENSUAL_PRO_PLUS'],
+    'profesional-yearly' => ['openpay_plan_id' => 'TU_PLAN_ID_ANUAL_PRO'],
+    'profesional-plus-yearly' => ['openpay_plan_id' => 'TU_PLAN_ID_ANUAL_PRO_PLUS'],
+];

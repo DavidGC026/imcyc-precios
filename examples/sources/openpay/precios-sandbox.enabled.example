@@ -1,0 +1,2 @@
+# Renombrar a precios-sandbox.enabled (archivo vacío) para forzar sandbox en /precios.
+# Eliminar este archivo en producción.

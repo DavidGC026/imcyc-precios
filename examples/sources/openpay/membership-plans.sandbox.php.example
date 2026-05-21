@@ -1,0 +1,10 @@
+<?php
+/**
+ * Planes Openpay SANDBOX — copiar a /var/www/sources/openpay/membership-plans.sandbox.php
+ * Activo solo si existe precios-sandbox.enabled o IMCYC_PRECIOS_OPENPAY_SANDBOX=1.
+ */
+return [
+    'profesional-monthly' => ['openpay_plan_id' => 'TU_PLAN_ID_SANDBOX'],
+    // Añade el resto de planes si los pruebas en sandbox:
+    // 'profesional-yearly' => ['openpay_plan_id' => '...'],
+];

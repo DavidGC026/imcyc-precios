@@ -16,7 +16,8 @@
 ## Credenciales en servidor
 
 ```bash
-sudo cp public/api/precios-webhook.env.example /var/www/sources/openpay/precios-webhook.env
+sudo cp examples/sources/openpay/precios-webhook.env.example /var/www/sources/openpay/precios-webhook.env
+# Renombrar: quitar .example del nombre del archivo
 # Editar OPENPAY_WEBHOOK_USER y OPENPAY_WEBHOOK_PASSWORD
 sudo chmod 640 /var/www/sources/openpay/precios-webhook.env
 sudo chown root:www-data /var/www/sources/openpay/precios-webhook.env
