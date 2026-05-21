@@ -1,0 +1,11 @@
+node_modules/
+build/
+.env
+.env.local
+public/api/data/*.sqlite
+public/api/data/openpay-plan-cache.json
+public/api/membership-plans.config.php
+public/api/precios-sandbox.enabled
+public/api/precios-openpay.env
+public/api/precios-mysql.env
+public/api/precios-webhook.env
