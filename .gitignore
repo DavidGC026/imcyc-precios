@@ -1,0 +1,17 @@
+node_modules/
+build/
+.cache/
+
+# Variables de entorno y llaves (nunca subir valores reales)
+.env
+.env.*
+!.env.example
+precios-openpay.env
+precios-mysql.env
+**/keys.php
+
+# Datos locales / caché de Openpay
+public/api/data/
+
+.DS_Store
+*.log

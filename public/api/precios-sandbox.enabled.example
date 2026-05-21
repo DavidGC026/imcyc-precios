@@ -1,0 +1,2 @@
+# Renombrar a precios-sandbox.enabled para activar sandbox SOLO en /precios/api
+# (la tienda TiendaImcyc sigue en producción si su config no cambia).

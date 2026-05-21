@@ -1,0 +1,15 @@
+{
+  "short_name": "IMCYC Membresías",
+  "name": "Membresías Universidad IMCYC",
+  "icons": [
+    {
+      "src": "https://grabador.imcyc.com/ArchivosPDF/logoimcyc.png",
+      "type": "image/png",
+      "sizes": "192x192"
+    }
+  ],
+  "start_url": "/precios/",
+  "display": "standalone",
+  "theme_color": "#000000",
+  "background_color": "#000000"
+}
